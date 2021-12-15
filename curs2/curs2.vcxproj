@@ -121,6 +121,8 @@
     <ClCompile Include="doctor.cpp" />
     <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="opros1.cpp" />
+    <ClCompile Include="opros2.cpp" />
+    <ClCompile Include="opros3.cpp" />
     <ClCompile Include="patient.cpp" />
     <ClCompile Include="visit.cpp" />
   </ItemGroup>
@@ -130,6 +132,8 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="opros1.h" />
+    <ClInclude Include="opros2.h" />
+    <ClInclude Include="opros3.h" />
     <ClInclude Include="patient.h" />
     <ClInclude Include="visit.h" />
   </ItemGroup>
