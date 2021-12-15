@@ -121,6 +121,7 @@
     <ClCompile Include="doctor.cpp" />
     <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="patient.cpp" />
+    <ClCompile Include="visit.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="doctor.h" />
@@ -128,6 +129,7 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="patient.h" />
+    <ClInclude Include="visit.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

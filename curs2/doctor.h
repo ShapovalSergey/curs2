@@ -1,7 +1,7 @@
 #pragma once
 #define _CRT_SECURE_NO_WARNINGS
 #include <string.h>
-#include <vector>
+//#include <vector>
 #include <iostream>
 
 class doctor
@@ -11,8 +11,6 @@ private:
 	std::string surname;
 	std::string otch;
 	std::string speciality;
-
-
 public:
 	void change_name(std::string name)
 	{
@@ -46,6 +44,5 @@ public:
 	{
 		return speciality;
 	};
-
 };
 
