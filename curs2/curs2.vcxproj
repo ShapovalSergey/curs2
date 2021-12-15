@@ -118,10 +118,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="doctor.cpp" />
     <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="patient.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="doctor.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
