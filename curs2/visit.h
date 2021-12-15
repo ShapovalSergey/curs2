@@ -17,8 +17,20 @@ private:
 	int hour;
 	int minute;
 	std::string location;
+	int opros_type;
 	//opros opr;
 public:
+	visit();
+	visit(doctor doc,patient pat, int day_date, int month_date, int year_date, int hour, int minute, std::string location) 
+	{
+		this->doc = doc;
+		this->pat = pat;
+		this->day_date = day_date;
+		this->month_date = month_date;
+		this->year_date = year_date;
+		this->hour = hour;
+		this->minute = minute;
+	};
 	void change_doc(doctor a) 
 	{
 		this->doc = a;

@@ -12,6 +12,14 @@ private:
 	std::string otch;
 	std::string speciality;
 public:
+	doctor();
+	doctor(std::string name, std::string surname, std::string otch, std::string speciality) 
+	{
+		this->name = name;
+		this->surname = surname;
+		this->otch = otch;
+		this->speciality = speciality;
+	};
 	void change_name(std::string name)
 	{
 		this->name = name;
