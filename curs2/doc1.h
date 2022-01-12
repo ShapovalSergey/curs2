@@ -382,6 +382,13 @@ namespace curs2 {
 		textBox_password2->Visible = true;
 		accept->Visible = true;
 		back->Visible = true;
+		textBox_name->Text = "";
+		textBox_surname->Text = "";
+		textBox_otch->Text = "";
+		comboBox_spec->Text = "";
+		textBox_login->Text = "";
+		textBox_password->Text = "";
+		textBox_password2->Text = "";
 	}
 private: System::Void checkedListBox1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
 }
@@ -420,7 +427,7 @@ private: System::Void doc1_Load(System::Object^ sender, System::EventArgs^ e) {
 private: System::Void accept_Click(System::Object^ sender, System::EventArgs^ e) 
 {
 	int mode = 0; char log[30]; char pass[70];
-	FILE* p1; doctor doc; std::string str;
+	FILE* p1; doctor doc; std::string str; char* str1,*stroka;
 	p1 = fopen("doctors.txt", "r");
 	if (p1 == NULL)
 	{
@@ -429,7 +436,7 @@ private: System::Void accept_Click(System::Object^ sender, System::EventArgs^ e)
 	fcloseall();
 	while (mode==0)
 	{
-	
+	mode = 1;
 	msclr::interop::marshal_context context;
 	doc.change_name(context.marshal_as<std::string>(textBox_name->Text));
 	doc.change_surname(context.marshal_as<std::string>(textBox_surname->Text));
@@ -440,39 +447,27 @@ private: System::Void accept_Click(System::Object^ sender, System::EventArgs^ e)
 	}
 	else if (comboBox_spec->SelectedIndex == 1)
 	{
-		doc.change_speciality("Гастроэнтеролог"); mode = 1;
+		doc.change_speciality("Гастроэнтеролог");
 	}
 	else if (comboBox_spec->SelectedIndex == 2)
 	{
-		doc.change_speciality("Невролог"); mode = 1;
+		doc.change_speciality("Невролог");
 	}
 	else if (comboBox_spec->SelectedIndex == 3)
 	{
-		doc.change_speciality("Оториноларинголог"); mode = 1;
+		doc.change_speciality("Оториноларинголог");
 	}
 	if (doc.return_name().empty())
 	{
 		mode = 0;
 	}
-	else
-	{
-		mode = 1;
-	}
 	if (doc.return_surname().empty())
 	{
 		mode = 0;
 	}
-	else
-	{
-		mode = 1;
-	}
 	if (doc.return_otch().empty())
 	{
 		mode = 0;
-	}
-	else
-	{
-		mode = 1;
 	}
 	const char* slo = context.marshal_as<const char*>(textBox_login ->Text);
 	FILE* p2; doctor doc; std::string str;
@@ -486,19 +481,67 @@ private: System::Void accept_Click(System::Object^ sender, System::EventArgs^ e)
 	p2 = fopen("logins.txt", "r");
 	for (int i = 0; fscanf(p2, "%s", str) != EOF; i++)
 	{
-		fseek(p2, i * 150, SEEK_SET);
+		fseek(p2, i * 153, SEEK_SET);
+		
 		n++;
 	}
-	_fcloseall();
+	for (int i = 0; i < n; i++)
+	{
+		fgets(str1, 69, p2);
+		strcpy(stroka, str1);
+		char* ptr = strtok(stroka, " ");
+		ptr = strtok(NULL, " ");
+		if (ptr==slo)
+		{
+			mode == 0;
+		}
+	}
+	if (password->Text!=password2->Text)
+	{
+		mode == 0;
+	}
 
 	//////////////////////
-
-
+	if (mode==1)
+	{
+		
+		if (System::Windows::Forms::DialogResult::Yes == MessageBox::Show("Вы уверены, что хотите создать такой профиль?", "Подтверждение", MessageBoxButtons::YesNo, MessageBoxIcon::Warning))
+		{
+		str = doc.return_surname() +" "+ doc.return_name() + " " + doc.return_otch();
+		std::ofstream out("doctors.txt");
+		out << str;
+		//p1 = fopen("doctors.txt", "a");
+		//fprintf(p1, "%s", str);
+		//fclose(p1);
+		
+		label1_mode->Location = System::Drawing::Point(label1_mode->Location.X, 150);;
+		label1_mode->Text = "Выберите, что вы хотите сделать";
+		create->Visible = true;
+		enter->Visible = true;
+		name->Visible = false;
+		surname->Visible = false;
+		otch->Visible = false;
+		speciality->Visible = false;
+		textBox_name->Visible = false;
+		textBox_surname->Visible = false;
+		textBox_otch->Visible = false;
+		comboBox_spec->Visible = false;
+		login->Visible = false;
+		password->Visible = false;
+		password2->Visible = false;
+		textBox_login->Visible = false;
+		textBox_password->Visible = false;
+		textBox_password2->Visible = false;
+		accept->Visible = false;
+		}
+		else
+		{
+			mode == 0;
+		}
+	}
+	_fcloseall();
 	}
 	
-	str = doc.return_surname() +" "+ doc.return_name() + " " + doc.return_otch();
-	std::ofstream out("doctors.txt");
-	out << str;
 	//p1 = fopen("doctors.txt", "a");
 	//fprintf(p1, "%s", str);
 	//fclose(p1);
