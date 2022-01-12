@@ -3,16 +3,13 @@
 #include <string.h>
 //#include <vector>
 #include <iostream>
+#include "person.h"
 
 
-
- class patient
+ class patient :public person
 {
 
 private:
-	std::string name;
-	std::string surname;
-	std::string otch;
 	int age;
 	bool sex;
 	int height;
@@ -24,9 +21,7 @@ public:
 	patient();
 	patient(std::string name, std::string surname, std::string otch, int age, bool sex, int height, int weight, int day_of_birth,int month_of_birth, int year_of_birth) 
 	{
-		this->name = name;
-		this->surname = surname;
-		this->otch = otch;
+		person(name, surname, otch);
 		this->age = age;
 		this->sex = sex;
 		this->height = height;
@@ -35,18 +30,7 @@ public:
 		this->month_of_birth = month_of_birth;
 		this->year_of_birth = year_of_birth;
 	};
-	void change_name(std::string name) 
-	{
-		this->name = name;
-	};
-	void change_surname(std::string surname)
-	{
-		this->surname = surname;
-	};
-	void change_otch(std::string otch)
-	{
-		this->otch = otch;
-	};
+
 	void change_sex(bool sex) 
 	{
 		this->sex = sex;
@@ -74,18 +58,6 @@ public:
 	void change_year_of_birth(int year_of_birth)
 	{
 		this->year_of_birth = year_of_birth;
-	};
-	std::string return_name() 
-	{
-		return name;
-	};
-	std::string return_surname()
-	{
-		return surname;
-	};
-	std::string return_otch()
-	{
-		return otch;
 	};
 	bool return_sex() 
 	{

@@ -3,9 +3,9 @@
 #include <string.h>
 #include <iostream>
 #include "visit.h"
-
+#include "ISaveOpros.h"
 /*Опросник для посещения гастроэнтеролога*/
-class opros3
+class opros3:public ISaveOpros
 {
 private:
 	visit vis;
@@ -43,5 +43,6 @@ public:
 	bool return_toshnota() { return toshnota; };
 	bool return_rvota() { return rvota; };
 	bool return_bol_v_zhivote() { return bol_v_zhivote; };
+	virtual void saveopros() {};
 };
 

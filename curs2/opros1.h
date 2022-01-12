@@ -3,9 +3,10 @@
 #include <string.h>
 #include <iostream>
 #include "visit.h"
+#include "ISaveOpros.h"
 
 /*ќпросник дл€ посещени€ оториноларинголога (лор)*/
-class opros1
+class opros1 :public ISaveOpros
 {
 private:
 	visit vis;
@@ -43,6 +44,6 @@ public:
 	bool return_golov_bol() { return golov_bol; };
 	bool return_oznob() { return oznob; };
 	bool return_zhar() { return zhar; };
-
+	virtual void saveopros() {};
 };
 

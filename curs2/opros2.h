@@ -3,8 +3,10 @@
 #include <string.h>
 #include <iostream>
 #include "visit.h"
+#include "ISaveOpros.h"
+
 /*Опросник для посещения невролога*/
-class opros2
+class opros2 :public ISaveOpros
 {
 private:
 	visit vis;
@@ -42,5 +44,6 @@ public:
 	bool return_golov_bol() { return golov_bol; };
 	bool return_epilep_pripadki() { return epilep_pripadki; };
 	bool return_bol_v_spine() { return bol_v_spine; };
+	virtual void saveopros() {  };
 };
 
