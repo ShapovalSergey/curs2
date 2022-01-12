@@ -118,6 +118,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="doc1.cpp" />
     <ClCompile Include="doctor.cpp" />
     <ClCompile Include="ISaveOpros.cpp" />
     <ClCompile Include="MyForm.cpp" />
@@ -129,6 +130,9 @@
     <ClCompile Include="visit.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="doc1.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="doctor.h" />
     <ClInclude Include="ISaveOpros.h" />
     <ClInclude Include="MyForm.h">
@@ -142,6 +146,9 @@
     <ClInclude Include="visit.h" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="doc1.resx">
+      <DependentUpon>doc1.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MyForm.resx">
       <DependentUpon>MyForm.h</DependentUpon>
     </EmbeddedResource>

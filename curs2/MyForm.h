@@ -1,5 +1,5 @@
 #pragma once
-
+#include "doc1.h"
 namespace curs2 {
 
 	using namespace System;
@@ -110,13 +110,12 @@ namespace curs2 {
 			this->doctor->TabIndex = 3;
 			this->doctor->Text = L"Доктор";
 			this->doctor->UseVisualStyleBackColor = false;
+			this->doctor->Click += gcnew System::EventHandler(this, &MyForm::doctor_Click);
 			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->AutoSize = true;
-			this->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			this->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
 			this->ClientSize = System::Drawing::Size(784, 561);
 			this->Controls->Add(this->doctor);
@@ -125,7 +124,6 @@ namespace curs2 {
 			this->Controls->Add(this->main_menu);
 			this->Name = L"MyForm";
 			this->Text = L"Опросник";
-			this->WindowState = System::Windows::Forms::FormWindowState::Maximized;
 			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -135,5 +133,11 @@ namespace curs2 {
 	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) 
 	{
 	}
-	};
+	private: System::Void doctor_Click(System::Object^ sender, System::EventArgs^ e) 
+	{
+		doc1^ f = gcnew doc1();
+		f->Show();
+		this->Hide();
+	}
+};
 }
