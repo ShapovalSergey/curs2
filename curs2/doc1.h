@@ -50,10 +50,10 @@ namespace curs2 {
 	private: System::Windows::Forms::Label^ surname;
 	private: System::Windows::Forms::Label^ name;
 	private: System::Windows::Forms::Label^ otch;
-	private: System::Windows::Forms::Label^ vozrast;
+
 	private: System::Windows::Forms::Label^ speciality;
 	private: System::Windows::Forms::TextBox^ textBox_surname;
-	private: System::Windows::Forms::TextBox^ textBox_vozrast;
+
 
 
 	private: System::Windows::Forms::TextBox^ textBox_otch;
@@ -98,10 +98,8 @@ namespace curs2 {
 			this->surname = (gcnew System::Windows::Forms::Label());
 			this->name = (gcnew System::Windows::Forms::Label());
 			this->otch = (gcnew System::Windows::Forms::Label());
-			this->vozrast = (gcnew System::Windows::Forms::Label());
 			this->speciality = (gcnew System::Windows::Forms::Label());
 			this->textBox_surname = (gcnew System::Windows::Forms::TextBox());
-			this->textBox_vozrast = (gcnew System::Windows::Forms::TextBox());
 			this->textBox_otch = (gcnew System::Windows::Forms::TextBox());
 			this->textBox_name = (gcnew System::Windows::Forms::TextBox());
 			this->comboBox_spec = (gcnew System::Windows::Forms::ComboBox());
@@ -188,24 +186,12 @@ namespace curs2 {
 			this->otch->Text = L"Введите ваше отчество";
 			this->otch->Visible = false;
 			// 
-			// vozrast
-			// 
-			this->vozrast->AutoSize = true;
-			this->vozrast->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(204)));
-			this->vozrast->Location = System::Drawing::Point(50, 250);
-			this->vozrast->Name = L"vozrast";
-			this->vozrast->Size = System::Drawing::Size(176, 20);
-			this->vozrast->TabIndex = 8;
-			this->vozrast->Text = L"Введите ваш возраст";
-			this->vozrast->Visible = false;
-			// 
 			// speciality
 			// 
 			this->speciality->AutoSize = true;
 			this->speciality->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->speciality->Location = System::Drawing::Point(50, 300);
+			this->speciality->Location = System::Drawing::Point(50, 250);
 			this->speciality->Name = L"speciality";
 			this->speciality->Size = System::Drawing::Size(205, 20);
 			this->speciality->TabIndex = 9;
@@ -219,14 +205,6 @@ namespace curs2 {
 			this->textBox_surname->Size = System::Drawing::Size(158, 20);
 			this->textBox_surname->TabIndex = 10;
 			this->textBox_surname->Visible = false;
-			// 
-			// textBox_vozrast
-			// 
-			this->textBox_vozrast->Location = System::Drawing::Point(291, 250);
-			this->textBox_vozrast->Name = L"textBox_vozrast";
-			this->textBox_vozrast->Size = System::Drawing::Size(158, 20);
-			this->textBox_vozrast->TabIndex = 11;
-			this->textBox_vozrast->Visible = false;
 			// 
 			// textBox_otch
 			// 
@@ -248,7 +226,7 @@ namespace curs2 {
 			// 
 			this->comboBox_spec->FormattingEnabled = true;
 			this->comboBox_spec->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Гастроэнтеролог", L"Невролог", L"Оториноларинголог" });
-			this->comboBox_spec->Location = System::Drawing::Point(291, 299);
+			this->comboBox_spec->Location = System::Drawing::Point(291, 249);
 			this->comboBox_spec->Name = L"comboBox_spec";
 			this->comboBox_spec->Size = System::Drawing::Size(158, 21);
 			this->comboBox_spec->TabIndex = 15;
@@ -288,7 +266,7 @@ namespace curs2 {
 			this->password->AutoSize = true;
 			this->password->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->password->Location = System::Drawing::Point(48, 400);
+			this->password->Location = System::Drawing::Point(50, 350);
 			this->password->Name = L"password";
 			this->password->Size = System::Drawing::Size(163, 20);
 			this->password->TabIndex = 18;
@@ -300,7 +278,7 @@ namespace curs2 {
 			this->login->AutoSize = true;
 			this->login->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->login->Location = System::Drawing::Point(48, 350);
+			this->login->Location = System::Drawing::Point(48, 297);
 			this->login->Name = L"login";
 			this->login->Size = System::Drawing::Size(152, 20);
 			this->login->TabIndex = 19;
@@ -309,7 +287,8 @@ namespace curs2 {
 			// 
 			// textBox_login
 			// 
-			this->textBox_login->Location = System::Drawing::Point(291, 350);
+			this->textBox_login->Location = System::Drawing::Point(291, 297);
+			this->textBox_login->MaxLength = 30;
 			this->textBox_login->Name = L"textBox_login";
 			this->textBox_login->Size = System::Drawing::Size(158, 20);
 			this->textBox_login->TabIndex = 20;
@@ -317,16 +296,20 @@ namespace curs2 {
 			// 
 			// textBox_password
 			// 
-			this->textBox_password->Location = System::Drawing::Point(291, 400);
+			this->textBox_password->Location = System::Drawing::Point(291, 350);
+			this->textBox_password->MaxLength = 70;
 			this->textBox_password->Name = L"textBox_password";
+			this->textBox_password->PasswordChar = '*';
 			this->textBox_password->Size = System::Drawing::Size(158, 20);
 			this->textBox_password->TabIndex = 21;
 			this->textBox_password->Visible = false;
 			// 
 			// textBox_password2
 			// 
-			this->textBox_password2->Location = System::Drawing::Point(291, 450);
+			this->textBox_password2->Location = System::Drawing::Point(291, 402);
+			this->textBox_password2->MaxLength = 70;
 			this->textBox_password2->Name = L"textBox_password2";
+			this->textBox_password2->PasswordChar = '*';
 			this->textBox_password2->Size = System::Drawing::Size(158, 20);
 			this->textBox_password2->TabIndex = 22;
 			this->textBox_password2->Visible = false;
@@ -336,7 +319,7 @@ namespace curs2 {
 			this->password2->AutoSize = true;
 			this->password2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->password2->Location = System::Drawing::Point(50, 450);
+			this->password2->Location = System::Drawing::Point(51, 400);
 			this->password2->Name = L"password2";
 			this->password2->Size = System::Drawing::Size(152, 20);
 			this->password2->TabIndex = 23;
@@ -360,10 +343,8 @@ namespace curs2 {
 			this->Controls->Add(this->comboBox_spec);
 			this->Controls->Add(this->textBox_name);
 			this->Controls->Add(this->textBox_otch);
-			this->Controls->Add(this->textBox_vozrast);
 			this->Controls->Add(this->textBox_surname);
 			this->Controls->Add(this->speciality);
-			this->Controls->Add(this->vozrast);
 			this->Controls->Add(this->otch);
 			this->Controls->Add(this->name);
 			this->Controls->Add(this->surname);
@@ -388,12 +369,10 @@ namespace curs2 {
 		name->Visible = true;
 		surname->Visible = true;
 		otch->Visible = true;
-		vozrast->Visible = true;
 		speciality->Visible = true;
 		textBox_name->Visible = true;
 		textBox_surname->Visible = true;
 		textBox_otch->Visible = true;
-		textBox_vozrast->Visible = true;
 		comboBox_spec->Visible = true;
 		login->Visible = true;
 		password->Visible = true;
@@ -417,12 +396,10 @@ private: System::Void back_Click(System::Object^ sender, System::EventArgs^ e)
 	name->Visible = false;
 	surname->Visible = false;
 	otch->Visible = false;
-	vozrast->Visible = false;
 	speciality->Visible = false;
 	textBox_name->Visible = false;
 	textBox_surname->Visible = false;
 	textBox_otch->Visible = false;
-	textBox_vozrast->Visible = false;
 	comboBox_spec->Visible = false;
 	login->Visible = false;
 	password->Visible = false;
@@ -442,16 +419,83 @@ private: System::Void doc1_Load(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void accept_Click(System::Object^ sender, System::EventArgs^ e) 
 {
+	int mode = 0; char log[30]; char pass[70];
 	FILE* p1; doctor doc; std::string str;
 	p1 = fopen("doctors.txt", "r");
 	if (p1 == NULL)
 	{
 		p1 = fopen("doctors.txt", "w");
 	}
+	fcloseall();
+	while (mode==0)
+	{
+	
 	msclr::interop::marshal_context context;
 	doc.change_name(context.marshal_as<std::string>(textBox_name->Text));
 	doc.change_surname(context.marshal_as<std::string>(textBox_surname->Text));
 	doc.change_otch(context.marshal_as<std::string>(textBox_otch->Text));
+	if (comboBox_spec->SelectedIndex==0)
+	{
+		mode = 0;
+	}
+	else if (comboBox_spec->SelectedIndex == 1)
+	{
+		doc.change_speciality("Гастроэнтеролог"); mode = 1;
+	}
+	else if (comboBox_spec->SelectedIndex == 2)
+	{
+		doc.change_speciality("Невролог"); mode = 1;
+	}
+	else if (comboBox_spec->SelectedIndex == 3)
+	{
+		doc.change_speciality("Оториноларинголог"); mode = 1;
+	}
+	if (doc.return_name().empty())
+	{
+		mode = 0;
+	}
+	else
+	{
+		mode = 1;
+	}
+	if (doc.return_surname().empty())
+	{
+		mode = 0;
+	}
+	else
+	{
+		mode = 1;
+	}
+	if (doc.return_otch().empty())
+	{
+		mode = 0;
+	}
+	else
+	{
+		mode = 1;
+	}
+	const char* slo = context.marshal_as<const char*>(textBox_login ->Text);
+	FILE* p2; doctor doc; std::string str;
+	p2 = fopen("logins.txt", "r");
+	if (p2 == NULL)
+	{
+		p2 = fopen("logins.txt", "w");
+	}
+	fcloseall();
+	int n = -1;
+	p2 = fopen("logins.txt", "r");
+	for (int i = 0; fscanf(p2, "%s", str) != EOF; i++)
+	{
+		fseek(p2, i * 150, SEEK_SET);
+		n++;
+	}
+	_fcloseall();
+
+	//////////////////////
+
+
+	}
+	
 	str = doc.return_surname() +" "+ doc.return_name() + " " + doc.return_otch();
 	std::ofstream out("doctors.txt");
 	out << str;
