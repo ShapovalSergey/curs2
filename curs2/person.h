@@ -8,9 +8,8 @@ private:
 	std::string name;
 	std::string surname;
 	std::string otch;
-protected:
-	person();
 public:
+	person() {};
 	person(std::string name, std::string surname, std::string otch) 
 	{
 		this->name = name;
@@ -29,6 +28,8 @@ public:
 	{
 		this->otch = otch;
 	};
-
+	std::string return_name() { return name; };
+	std::string return_surname() { return surname; };
+	std::string return_otch() { return otch; };
 };
 

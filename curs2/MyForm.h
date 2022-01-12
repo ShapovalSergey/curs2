@@ -1,5 +1,6 @@
 #pragma once
 #include "doc1.h"
+#include "doctor.cpp"
 namespace curs2 {
 
 	using namespace System;

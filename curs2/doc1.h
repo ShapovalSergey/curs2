@@ -1,5 +1,15 @@
 #pragma once
 #include "MyForm.h"
+#include "doctor.cpp"
+#include <iostream>
+#include <stdio.h>
+#include <conio.h>
+#include <windows.h>
+#include <string>
+#include <stdlib.h>
+#include <msclr\marshal.h>
+#include <msclr/marshal_cppstd.h>
+#include <fstream>
 namespace curs2 {
 
 	using namespace System;
@@ -271,6 +281,7 @@ namespace curs2 {
 			this->accept->Text = L"Создать";
 			this->accept->UseVisualStyleBackColor = false;
 			this->accept->Visible = false;
+			this->accept->Click += gcnew System::EventHandler(this, &doc1::accept_Click);
 			// 
 			// password
 			// 
@@ -428,6 +439,25 @@ private: System::Void back_Click(System::Object^ sender, System::EventArgs^ e)
 
 }
 private: System::Void doc1_Load(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void accept_Click(System::Object^ sender, System::EventArgs^ e) 
+{
+	FILE* p1; doctor doc; std::string str;
+	p1 = fopen("doctors.txt", "r");
+	if (p1 == NULL)
+	{
+		p1 = fopen("doctors.txt", "w");
+	}
+	msclr::interop::marshal_context context;
+	doc.change_name(context.marshal_as<std::string>(textBox_name->Text));
+	doc.change_surname(context.marshal_as<std::string>(textBox_surname->Text));
+	doc.change_otch(context.marshal_as<std::string>(textBox_otch->Text));
+	str = doc.return_surname() +" "+ doc.return_name() + " " + doc.return_otch();
+	std::ofstream out("doctors.txt");
+	out << str;
+	//p1 = fopen("doctors.txt", "a");
+	//fprintf(p1, "%s", str);
+	//fclose(p1);
 }
 };
 }

@@ -10,7 +10,7 @@ class doctor:public person
 private:
 	std::string speciality;
 public:
-	doctor();
+	doctor() { /*person();*/ };
 	doctor(std::string name, std::string surname, std::string otch, std::string speciality) 
 	{
 		person(name,surname,otch);
