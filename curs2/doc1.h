@@ -1,5 +1,5 @@
 #pragma once
-
+#include "MyForm.h"
 namespace curs2 {
 
 	using namespace System;
@@ -52,6 +52,13 @@ namespace curs2 {
 	private: System::Windows::Forms::ComboBox^ comboBox_spec;
 	private: System::Windows::Forms::Button^ back;
 	private: System::Windows::Forms::Button^ accept;
+	private: System::Windows::Forms::Label^ password;
+
+	private: System::Windows::Forms::Label^ login;
+	private: System::Windows::Forms::TextBox^ textBox_login;
+	private: System::Windows::Forms::TextBox^ textBox_password;
+	private: System::Windows::Forms::TextBox^ textBox_password2;
+	private: System::Windows::Forms::Label^ password2;
 
 
 
@@ -90,6 +97,12 @@ namespace curs2 {
 			this->comboBox_spec = (gcnew System::Windows::Forms::ComboBox());
 			this->back = (gcnew System::Windows::Forms::Button());
 			this->accept = (gcnew System::Windows::Forms::Button());
+			this->password = (gcnew System::Windows::Forms::Label());
+			this->login = (gcnew System::Windows::Forms::Label());
+			this->textBox_login = (gcnew System::Windows::Forms::TextBox());
+			this->textBox_password = (gcnew System::Windows::Forms::TextBox());
+			this->textBox_password2 = (gcnew System::Windows::Forms::TextBox());
+			this->password2 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// label1_mode
@@ -225,7 +238,7 @@ namespace curs2 {
 			// 
 			this->comboBox_spec->FormattingEnabled = true;
 			this->comboBox_spec->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Гастроэнтеролог", L"Невролог", L"Оториноларинголог" });
-			this->comboBox_spec->Location = System::Drawing::Point(291, 302);
+			this->comboBox_spec->Location = System::Drawing::Point(291, 299);
 			this->comboBox_spec->Name = L"comboBox_spec";
 			this->comboBox_spec->Size = System::Drawing::Size(158, 21);
 			this->comboBox_spec->TabIndex = 15;
@@ -243,7 +256,6 @@ namespace curs2 {
 			this->back->TabIndex = 16;
 			this->back->Text = L"Назад";
 			this->back->UseVisualStyleBackColor = false;
-			this->back->Visible = false;
 			this->back->Click += gcnew System::EventHandler(this, &doc1::back_Click);
 			// 
 			// accept
@@ -260,12 +272,78 @@ namespace curs2 {
 			this->accept->UseVisualStyleBackColor = false;
 			this->accept->Visible = false;
 			// 
+			// password
+			// 
+			this->password->AutoSize = true;
+			this->password->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->password->Location = System::Drawing::Point(48, 400);
+			this->password->Name = L"password";
+			this->password->Size = System::Drawing::Size(163, 20);
+			this->password->TabIndex = 18;
+			this->password->Text = L"Придумайте пароль";
+			this->password->Visible = false;
+			// 
+			// login
+			// 
+			this->login->AutoSize = true;
+			this->login->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->login->Location = System::Drawing::Point(48, 350);
+			this->login->Name = L"login";
+			this->login->Size = System::Drawing::Size(152, 20);
+			this->login->TabIndex = 19;
+			this->login->Text = L"Придумайте логин";
+			this->login->Visible = false;
+			// 
+			// textBox_login
+			// 
+			this->textBox_login->Location = System::Drawing::Point(291, 350);
+			this->textBox_login->Name = L"textBox_login";
+			this->textBox_login->Size = System::Drawing::Size(158, 20);
+			this->textBox_login->TabIndex = 20;
+			this->textBox_login->Visible = false;
+			// 
+			// textBox_password
+			// 
+			this->textBox_password->Location = System::Drawing::Point(291, 400);
+			this->textBox_password->Name = L"textBox_password";
+			this->textBox_password->Size = System::Drawing::Size(158, 20);
+			this->textBox_password->TabIndex = 21;
+			this->textBox_password->Visible = false;
+			// 
+			// textBox_password2
+			// 
+			this->textBox_password2->Location = System::Drawing::Point(291, 450);
+			this->textBox_password2->Name = L"textBox_password2";
+			this->textBox_password2->Size = System::Drawing::Size(158, 20);
+			this->textBox_password2->TabIndex = 22;
+			this->textBox_password2->Visible = false;
+			// 
+			// password2
+			// 
+			this->password2->AutoSize = true;
+			this->password2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->password2->Location = System::Drawing::Point(50, 450);
+			this->password2->Name = L"password2";
+			this->password2->Size = System::Drawing::Size(152, 20);
+			this->password2->TabIndex = 23;
+			this->password2->Text = L"Повторите пароль";
+			this->password2->Visible = false;
+			// 
 			// doc1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
 			this->ClientSize = System::Drawing::Size(784, 561);
+			this->Controls->Add(this->password2);
+			this->Controls->Add(this->textBox_password2);
+			this->Controls->Add(this->textBox_password);
+			this->Controls->Add(this->textBox_login);
+			this->Controls->Add(this->login);
+			this->Controls->Add(this->password);
 			this->Controls->Add(this->accept);
 			this->Controls->Add(this->back);
 			this->Controls->Add(this->comboBox_spec);
@@ -283,6 +361,7 @@ namespace curs2 {
 			this->Controls->Add(this->label1_mode);
 			this->Name = L"doc1";
 			this->Text = L"Доктор";
+			this->Load += gcnew System::EventHandler(this, &doc1::doc1_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -305,6 +384,12 @@ namespace curs2 {
 		textBox_otch->Visible = true;
 		textBox_vozrast->Visible = true;
 		comboBox_spec->Visible = true;
+		login->Visible = true;
+		password->Visible = true;
+		password2->Visible = true;
+		textBox_login->Visible = true;
+		textBox_password->Visible = true;
+		textBox_password2->Visible = true;
 		accept->Visible = true;
 		back->Visible = true;
 	}
@@ -312,6 +397,8 @@ private: System::Void checkedListBox1_SelectedIndexChanged(System::Object^ sende
 }
 private: System::Void back_Click(System::Object^ sender, System::EventArgs^ e) 
 {
+	if (label1_mode->Text=="Создание нового профиля")
+	{
 	label1_mode->Location = System::Drawing::Point(label1_mode->Location.X, 150);;
 	label1_mode->Text = "Выберите, что вы хотите сделать";
 	create->Visible = true;
@@ -326,8 +413,21 @@ private: System::Void back_Click(System::Object^ sender, System::EventArgs^ e)
 	textBox_otch->Visible = false;
 	textBox_vozrast->Visible = false;
 	comboBox_spec->Visible = false;
+	login->Visible = false;
+	password->Visible = false;
+	password2->Visible = false;
+	textBox_login->Visible = false;
+	textBox_password->Visible = false;
+	textBox_password2->Visible = false;
 	accept->Visible = false;
-	back->Visible = false;
+	}
+	else if (label1_mode->Text == "Выберите, что вы хотите сделать")
+	{
+		this->Hide();
+	}
+
+}
+private: System::Void doc1_Load(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }

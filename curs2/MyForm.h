@@ -124,20 +124,16 @@ namespace curs2 {
 			this->Controls->Add(this->main_menu);
 			this->Name = L"MyForm";
 			this->Text = L"Опросник";
-			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
-	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) 
-	{
-	}
 	private: System::Void doctor_Click(System::Object^ sender, System::EventArgs^ e) 
 	{
 		doc1^ f = gcnew doc1();
 		f->Show();
-		this->Hide();
+		//this->Hide();
 	}
 };
 }
