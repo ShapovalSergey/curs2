@@ -354,7 +354,7 @@ namespace curs2 {
 			// textBox_password
 			// 
 			this->textBox_password->Location = System::Drawing::Point(291, 350);
-			this->textBox_password->MaxLength = 70;
+			this->textBox_password->MaxLength = 60;
 			this->textBox_password->Name = L"textBox_password";
 			this->textBox_password->PasswordChar = '*';
 			this->textBox_password->Size = System::Drawing::Size(158, 20);
@@ -364,7 +364,7 @@ namespace curs2 {
 			// textBox_password2
 			// 
 			this->textBox_password2->Location = System::Drawing::Point(291, 402);
-			this->textBox_password2->MaxLength = 70;
+			this->textBox_password2->MaxLength = 60;
 			this->textBox_password2->Name = L"textBox_password2";
 			this->textBox_password2->PasswordChar = '*';
 			this->textBox_password2->Size = System::Drawing::Size(158, 20);
@@ -389,7 +389,7 @@ namespace curs2 {
 			this->error_surname->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->error_surname->ForeColor = System::Drawing::Color::Red;
-			this->error_surname->Location = System::Drawing::Point(524, 105);
+			this->error_surname->Location = System::Drawing::Point(518, 102);
 			this->error_surname->Name = L"error_surname";
 			this->error_surname->Size = System::Drawing::Size(166, 16);
 			this->error_surname->TabIndex = 24;
@@ -402,7 +402,7 @@ namespace curs2 {
 			this->error_name->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->error_name->ForeColor = System::Drawing::Color::Red;
-			this->error_name->Location = System::Drawing::Point(524, 155);
+			this->error_name->Location = System::Drawing::Point(518, 150);
 			this->error_name->Name = L"error_name";
 			this->error_name->Size = System::Drawing::Size(166, 16);
 			this->error_name->TabIndex = 25;
@@ -415,7 +415,7 @@ namespace curs2 {
 			this->error_otch->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->error_otch->ForeColor = System::Drawing::Color::Red;
-			this->error_otch->Location = System::Drawing::Point(524, 205);
+			this->error_otch->Location = System::Drawing::Point(518, 200);
 			this->error_otch->Name = L"error_otch";
 			this->error_otch->Size = System::Drawing::Size(166, 16);
 			this->error_otch->TabIndex = 26;
@@ -428,7 +428,7 @@ namespace curs2 {
 			this->error_spec->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->error_spec->ForeColor = System::Drawing::Color::Red;
-			this->error_spec->Location = System::Drawing::Point(524, 255);
+			this->error_spec->Location = System::Drawing::Point(518, 249);
 			this->error_spec->Name = L"error_spec";
 			this->error_spec->Size = System::Drawing::Size(166, 16);
 			this->error_spec->TabIndex = 27;
@@ -441,7 +441,7 @@ namespace curs2 {
 			this->error_login->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->error_login->ForeColor = System::Drawing::Color::Red;
-			this->error_login->Location = System::Drawing::Point(524, 304);
+			this->error_login->Location = System::Drawing::Point(518, 297);
 			this->error_login->Name = L"error_login";
 			this->error_login->Size = System::Drawing::Size(194, 16);
 			this->error_login->TabIndex = 28;
@@ -454,7 +454,7 @@ namespace curs2 {
 			this->error_pass->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->error_pass->ForeColor = System::Drawing::Color::Red;
-			this->error_pass->Location = System::Drawing::Point(524, 355);
+			this->error_pass->Location = System::Drawing::Point(518, 350);
 			this->error_pass->Name = L"error_pass";
 			this->error_pass->Size = System::Drawing::Size(166, 16);
 			this->error_pass->TabIndex = 29;
@@ -467,7 +467,7 @@ namespace curs2 {
 			this->error_pass2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->error_pass2->ForeColor = System::Drawing::Color::Red;
-			this->error_pass2->Location = System::Drawing::Point(524, 405);
+			this->error_pass2->Location = System::Drawing::Point(518, 400);
 			this->error_pass2->Name = L"error_pass2";
 			this->error_pass2->Size = System::Drawing::Size(254, 16);
 			this->error_pass2->TabIndex = 30;
@@ -607,6 +607,47 @@ private: System::Void accept_Click(System::Object^ sender, System::EventArgs^ e)
 	doc.change_name(context.marshal_as<std::string>(textBox_name->Text));
 	doc.change_surname(context.marshal_as<std::string>(textBox_surname->Text));
 	doc.change_otch(context.marshal_as<std::string>(textBox_otch->Text));
+	for (int i = 0; i < doc.return_name().length(); i++)
+	{
+		if (doc.return_name()[i]==' ')
+		{
+			error_name->Visible = true; error_name->Text = "Ошибка:\nНедопустимый символ пробел!!!";
+		}
+	}
+	for (int i = 0; i < doc.return_surname().length(); i++)
+	{
+		if (doc.return_surname()[i] == ' ')
+		{
+			error_surname->Visible = true; error_surname->Text = "Ошибка:\nНедопустимый символ пробел!!!";
+		}
+	}
+	for (int i = 0; i < doc.return_otch().length(); i++)
+	{
+		if (doc.return_otch()[i] == ' ')
+		{
+			error_otch->Visible = true; error_otch->Text = "Ошибка:\nНедопустимый символ пробел!!!";
+		}
+	}
+	for (int i = 0; i <textBox_login->Text->Length; i++)
+	{
+		if (textBox_login->Text[i] == ' ')
+		{
+			error_login->Visible = true; error_login->Text = "Ошибка:\nНедопустимый символ пробел!!!";
+		}
+	}	
+	for (int i = 0; i < textBox_password->Text->Length; i++)
+	{
+		if (textBox_password->Text[i] == ' ')
+		{
+			error_pass->Visible = true; error_pass->Text = "Ошибка:\nНедопустимый символ пробел!!!";
+		}
+	}
+
+
+
+
+
+
 	if ((comboBox_spec->Text!= "Гастроэнтеролог")&&(comboBox_spec->Text != "Невролог")&&(comboBox_spec->Text != "Оториноларинголог"))
 	{
 		mode-=1;
@@ -656,23 +697,31 @@ private: System::Void accept_Click(System::Object^ sender, System::EventArgs^ e)
 		p2 = fopen("logins.txt", "w");
 	}
 	fcloseall();
-	int n = -1;
+	int n = -2;
 	p2 = fopen("logins.txt", "r");
 	for (int i = 0; fscanf(p2, "%s", str) != EOF; i++)
 	{
 		fseek(p2, i * 153, SEEK_SET);
 		n++;
 	}
+	//MessageBox::Show("" + n, "Подтверждение", MessageBoxButtons::OK, MessageBoxIcon::Information);
 	fcloseall();
 	p2 = fopen("logins.txt", "r");
 	//std::ifstream out("logins.txt", std::ios::in);
+	//char* str9;
 	for (int i = 0; i < n; i++)
 	{
 		//std::getline(out,str,'%');
 		fgets(str1,153,p2);
+		//fgets(str9,1,p2);
 		strcpy(stroka, str1);
 		char* ptr = strtok(stroka, " ");
-		//ptr = strtok(NULL, " ");
+		while (ptr==NULL)
+		{
+			fgets(str1, 153, p2); strcpy(stroka, str1); ptr = strtok(stroka, " ");
+		}
+		//MessageBox::Show("" + context.marshal_as<String^>(ptr), "Подтверждение", MessageBoxButtons::OK, MessageBoxIcon::Information);
+		
 		if ((textBox_login->Text->Equals(context.marshal_as<String^>(ptr)))||(textBox_login->Text->Length==0))
 		{
 			mode-=1;
@@ -703,7 +752,7 @@ private: System::Void accept_Click(System::Object^ sender, System::EventArgs^ e)
 		mode+=1;
 	}
 
-	//////////////////////
+	////////////////////
 	if ((error_login->Visible == false)&&(error_name->Visible == false)&&(error_surname->Visible == false)&&(error_otch->Visible == false)&&(error_pass->Visible == false)&&(error_pass2->Visible == false)&&(error_spec->Visible == false))
 	{
 		
@@ -729,6 +778,8 @@ private: System::Void accept_Click(System::Object^ sender, System::EventArgs^ e)
 			str += " ";
 		}
 		str+= '\0';
+		//MessageBox::Show("" + str.length(), "Подтверждение", MessageBoxButtons::OK, MessageBoxIcon::Information);
+
 		std::ofstream out1("logins.txt", std::ios::app);
 		out1 << str << std::endl;
 		out1.close();
