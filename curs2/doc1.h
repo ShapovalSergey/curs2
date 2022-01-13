@@ -1,5 +1,6 @@
 #pragma once
 #include "MyForm.h"
+#include "doc_enter.h"
 #include "doctor.cpp"
 #include <iostream>
 #include <stdio.h>
@@ -204,6 +205,7 @@ namespace curs2 {
 			this->enter->TabIndex = 4;
 			this->enter->Text = L"Войти";
 			this->enter->UseVisualStyleBackColor = false;
+			this->enter->Click += gcnew System::EventHandler(this, &doc1::enter_Click);
 			// 
 			// surname
 			// 
@@ -773,6 +775,12 @@ private: System::Void accept_Click(System::Object^ sender, System::EventArgs^ e)
 	//p1 = fopen("doctors.txt", "a");
 	//fprintf(p1, "%s", str);
 	//fclose(p1);
+}
+private: System::Void enter_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	doc_enter^ f = gcnew doc_enter();
+	f->Show();
+	this->Close();
 }
 };
 }
