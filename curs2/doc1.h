@@ -10,6 +10,47 @@
 #include <msclr\marshal.h>
 #include <msclr/marshal_cppstd.h>
 #include <fstream>
+char en[] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'A', 'b', 'B', 'c', 'C', 'd', 'D', 'e', 'E', 'f', 'F', 'g', 'G', 'h', 'H', 'i', 'I', 'j', 'J', 'k', 'K', 'l', 'L', 'm', 'M', 'n', 'N', 'o', 'O', 'p', 'P', 'q', 'Q', 'r', 'R', 's', 'S', 't', 'T', 'u', 'U', 'v', 'V', 'w', 'W', 'x', 'X', 'y', 'Y', 'z', 'Z' };
+char ru[] = { 'à', 'À', 'á', 'Á', 'â', 'Â', 'ã', 'Ã', 'ä', 'Ä', 'å', 'Å', '¸', '¨', 'æ', 'Æ', 'ç', 'Ç', 'è', 'È', 'é', 'É', 'ê', 'Ê', 'ë', 'Ë', 'ì', 'Ì', 'í', 'Í', 'î', 'Î', 'ï', 'Ï', 'ð', 'Ð', 'ñ', 'Ñ', 'ò', 'Ò', 'ó', 'Ó', 'ô', 'Ô', 'õ', 'Õ', 'ö', 'Ö', '÷', '×', 'ø', 'Ø', 'ù', 'Ù', 'ú', 'Ú', 'û', 'Û', 'ü', 'Ü', 'ý', 'Ý', 'þ', 'Þ', 'ÿ','ß' };
+std::string kod(std::string par) 
+{
+	std::string k = ""; std::string parol="";
+	for ( int i = 0;  i < par.length(); i++)
+	{
+		for(int j = 0; j < 62; j++)
+		{
+			if (par[i]==en[j])
+			{
+				k += '0';
+				if (j+i<66)
+				{
+					parol += ru[i + j];
+				}
+				else
+				{
+					parol += ru[i + j-66];
+				}
+			}
+		}
+		for (int z = 0; z < 66; z++)
+		{
+			if (par[i] == ru[z])
+			{
+				k += '1';
+				if (z + i < 62)
+				{
+					parol += en[i + z];
+				}
+				else
+				{
+					parol += en[i + z - 62];
+				}
+			}
+		}
+	}
+	return parol + " " + k;
+};
+
 namespace curs2 {
 
 	using namespace System;
@@ -679,8 +720,8 @@ private: System::Void accept_Click(System::Object^ sender, System::EventArgs^ e)
 			out << str << std::endl;
 		}
 		out.close();
-
-		str = context.marshal_as<std::string>(textBox_login->Text)+" "+ context.marshal_as<std::string>(textBox_password->Text);
+		std::string vvod=kod(context.marshal_as<std::string>(textBox_password->Text));
+		str = context.marshal_as<std::string>(textBox_login->Text)+" "+vvod ;
 		for (int i = str.length(); i < 153; i++)
 		{
 			str += " ";
