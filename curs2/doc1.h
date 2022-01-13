@@ -69,6 +69,13 @@ namespace curs2 {
 	private: System::Windows::Forms::TextBox^ textBox_password;
 	private: System::Windows::Forms::TextBox^ textBox_password2;
 	private: System::Windows::Forms::Label^ password2;
+	private: System::Windows::Forms::Label^ error_surname;
+	private: System::Windows::Forms::Label^ error_name;
+	private: System::Windows::Forms::Label^ error_otch;
+	private: System::Windows::Forms::Label^ error_spec;
+	private: System::Windows::Forms::Label^ error_login;
+	private: System::Windows::Forms::Label^ error_pass;
+	private: System::Windows::Forms::Label^ error_pass2;
 
 
 
@@ -111,6 +118,13 @@ namespace curs2 {
 			this->textBox_password = (gcnew System::Windows::Forms::TextBox());
 			this->textBox_password2 = (gcnew System::Windows::Forms::TextBox());
 			this->password2 = (gcnew System::Windows::Forms::Label());
+			this->error_surname = (gcnew System::Windows::Forms::Label());
+			this->error_name = (gcnew System::Windows::Forms::Label());
+			this->error_otch = (gcnew System::Windows::Forms::Label());
+			this->error_spec = (gcnew System::Windows::Forms::Label());
+			this->error_login = (gcnew System::Windows::Forms::Label());
+			this->error_pass = (gcnew System::Windows::Forms::Label());
+			this->error_pass2 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// label1_mode
@@ -326,12 +340,110 @@ namespace curs2 {
 			this->password2->Text = L"Повторите пароль";
 			this->password2->Visible = false;
 			// 
+			// error_surname
+			// 
+			this->error_surname->AutoSize = true;
+			this->error_surname->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->error_surname->ForeColor = System::Drawing::Color::Red;
+			this->error_surname->Location = System::Drawing::Point(524, 105);
+			this->error_surname->Name = L"error_surname";
+			this->error_surname->Size = System::Drawing::Size(166, 16);
+			this->error_surname->TabIndex = 24;
+			this->error_surname->Text = L"Ошибка: Пустое поле";
+			this->error_surname->Visible = false;
+			// 
+			// error_name
+			// 
+			this->error_name->AutoSize = true;
+			this->error_name->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->error_name->ForeColor = System::Drawing::Color::Red;
+			this->error_name->Location = System::Drawing::Point(524, 155);
+			this->error_name->Name = L"error_name";
+			this->error_name->Size = System::Drawing::Size(166, 16);
+			this->error_name->TabIndex = 25;
+			this->error_name->Text = L"Ошибка: Пустое поле";
+			this->error_name->Visible = false;
+			// 
+			// error_otch
+			// 
+			this->error_otch->AutoSize = true;
+			this->error_otch->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->error_otch->ForeColor = System::Drawing::Color::Red;
+			this->error_otch->Location = System::Drawing::Point(524, 205);
+			this->error_otch->Name = L"error_otch";
+			this->error_otch->Size = System::Drawing::Size(166, 16);
+			this->error_otch->TabIndex = 26;
+			this->error_otch->Text = L"Ошибка: Пустое поле";
+			this->error_otch->Visible = false;
+			// 
+			// error_spec
+			// 
+			this->error_spec->AutoSize = true;
+			this->error_spec->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->error_spec->ForeColor = System::Drawing::Color::Red;
+			this->error_spec->Location = System::Drawing::Point(524, 255);
+			this->error_spec->Name = L"error_spec";
+			this->error_spec->Size = System::Drawing::Size(166, 16);
+			this->error_spec->TabIndex = 27;
+			this->error_spec->Text = L"Ошибка: Пустое поле";
+			this->error_spec->Visible = false;
+			// 
+			// error_login
+			// 
+			this->error_login->AutoSize = true;
+			this->error_login->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->error_login->ForeColor = System::Drawing::Color::Red;
+			this->error_login->Location = System::Drawing::Point(524, 304);
+			this->error_login->Name = L"error_login";
+			this->error_login->Size = System::Drawing::Size(194, 16);
+			this->error_login->TabIndex = 28;
+			this->error_login->Text = L"Ошибка: Неверный логин";
+			this->error_login->Visible = false;
+			// 
+			// error_pass
+			// 
+			this->error_pass->AutoSize = true;
+			this->error_pass->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->error_pass->ForeColor = System::Drawing::Color::Red;
+			this->error_pass->Location = System::Drawing::Point(524, 355);
+			this->error_pass->Name = L"error_pass";
+			this->error_pass->Size = System::Drawing::Size(166, 16);
+			this->error_pass->TabIndex = 29;
+			this->error_pass->Text = L"Ошибка: Пустое поле";
+			this->error_pass->Visible = false;
+			// 
+			// error_pass2
+			// 
+			this->error_pass2->AutoSize = true;
+			this->error_pass2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->error_pass2->ForeColor = System::Drawing::Color::Red;
+			this->error_pass2->Location = System::Drawing::Point(524, 405);
+			this->error_pass2->Name = L"error_pass2";
+			this->error_pass2->Size = System::Drawing::Size(254, 16);
+			this->error_pass2->TabIndex = 30;
+			this->error_pass2->Text = L"Ошибка: Несоответсвие паролей";
+			this->error_pass2->Visible = false;
+			// 
 			// doc1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
 			this->ClientSize = System::Drawing::Size(784, 561);
+			this->Controls->Add(this->error_pass2);
+			this->Controls->Add(this->error_pass);
+			this->Controls->Add(this->error_login);
+			this->Controls->Add(this->error_spec);
+			this->Controls->Add(this->error_otch);
+			this->Controls->Add(this->error_name);
+			this->Controls->Add(this->error_surname);
 			this->Controls->Add(this->password2);
 			this->Controls->Add(this->textBox_password2);
 			this->Controls->Add(this->textBox_password);
@@ -415,6 +527,13 @@ private: System::Void back_Click(System::Object^ sender, System::EventArgs^ e)
 	textBox_password->Visible = false;
 	textBox_password2->Visible = false;
 	accept->Visible = false;
+	error_login->Visible = false;
+	error_name->Visible = false;
+	error_surname->Visible = false;
+	error_otch->Visible = false;
+	error_pass->Visible = false;
+	error_pass2->Visible = false;
+	error_spec->Visible = false;
 	}
 	else if (label1_mode->Text == "Выберите, что вы хотите сделать")
 	{
@@ -426,51 +545,68 @@ private: System::Void doc1_Load(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void accept_Click(System::Object^ sender, System::EventArgs^ e) 
 {
-	int mode = 0; char log[30]; char pass[70];
-	FILE* p1; doctor doc; std::string str; char* str1,*stroka;
+	error_login->Visible = false;
+	error_name->Visible = false;
+	error_surname->Visible = false;
+	error_otch->Visible = false;
+	error_pass->Visible = false;
+	error_pass2->Visible = false;
+	error_spec->Visible = false;
+	int mode = 1; char log[30]; char pass[70]; //setlocale(LC_ALL, "Russian");
+	FILE* p1; doctor doc; std::string str; char str1[153],stroka[153];
 	p1 = fopen("doctors.txt", "r");
 	if (p1 == NULL)
 	{
 		p1 = fopen("doctors.txt", "w");
 	}
 	fcloseall();
-	while (mode==0)
-	{
-	mode = 1;
 	msclr::interop::marshal_context context;
 	doc.change_name(context.marshal_as<std::string>(textBox_name->Text));
 	doc.change_surname(context.marshal_as<std::string>(textBox_surname->Text));
 	doc.change_otch(context.marshal_as<std::string>(textBox_otch->Text));
-	if (comboBox_spec->SelectedIndex==0)
+	if ((comboBox_spec->Text!= "Гастроэнтеролог")&&(comboBox_spec->Text != "Невролог")&&(comboBox_spec->Text != "Оториноларинголог"))
 	{
-		mode = 0;
+		mode-=1;
+		error_spec->Visible = true;
 	}
 	else if (comboBox_spec->SelectedIndex == 1)
 	{
-		doc.change_speciality("Гастроэнтеролог");
+		doc.change_speciality("Гастроэнтеролог"); mode+=1;
 	}
 	else if (comboBox_spec->SelectedIndex == 2)
 	{
-		doc.change_speciality("Невролог");
+		doc.change_speciality("Невролог"); mode+=1;
 	}
 	else if (comboBox_spec->SelectedIndex == 3)
 	{
-		doc.change_speciality("Оториноларинголог");
+		doc.change_speciality("Оториноларинголог"); mode+=1;
 	}
 	if (doc.return_name().empty())
 	{
-		mode = 0;
+		mode-=1; error_name->Visible = true;
+	}
+	else
+	{
+		mode += 1;
 	}
 	if (doc.return_surname().empty())
 	{
-		mode = 0;
+		mode-=1; error_surname->Visible = true;
+	}
+	else
+	{
+		mode += 1;
 	}
 	if (doc.return_otch().empty())
 	{
-		mode = 0;
+		mode-=1; error_otch->Visible = true;
+	}
+	else
+	{
+		mode += 1;
 	}
 	const char* slo = context.marshal_as<const char*>(textBox_login ->Text);
-	FILE* p2; doctor doc; std::string str;
+	FILE* p2; //doctor doc; std::string str;
 	p2 = fopen("logins.txt", "r");
 	if (p2 == NULL)
 	{
@@ -482,38 +618,78 @@ private: System::Void accept_Click(System::Object^ sender, System::EventArgs^ e)
 	for (int i = 0; fscanf(p2, "%s", str) != EOF; i++)
 	{
 		fseek(p2, i * 153, SEEK_SET);
-		
 		n++;
 	}
+	fcloseall();
+	p2 = fopen("logins.txt", "r");
+	//std::ifstream out("logins.txt", std::ios::in);
 	for (int i = 0; i < n; i++)
 	{
-		fgets(str1, 69, p2);
+		//std::getline(out,str,'%');
+		fgets(str1,153,p2);
 		strcpy(stroka, str1);
 		char* ptr = strtok(stroka, " ");
-		ptr = strtok(NULL, " ");
-		if (ptr==slo)
+		//ptr = strtok(NULL, " ");
+		if ((textBox_login->Text->Equals(context.marshal_as<String^>(ptr)))||(textBox_login->Text->Length==0))
 		{
-			mode == 0;
+			mode-=1;
+			error_login->Visible = true;
+		}
+		else
+		{
+			mode += 1; //textBox_login->Text=context.marshal_as<String^>(slo);
 		}
 	}
-	if (password->Text!=password2->Text)
+	fcloseall();
+	if (!textBox_password->Text->Equals(textBox_password2->Text))
 	{
-		mode == 0;
+		mode-=1;
+		error_pass2->Visible = true;
+	}
+	else
+	{
+		mode+=1;
+	}
+	if (textBox_password->Text->Length == 0)
+	{
+		mode-=1;
+		error_pass->Visible = true; 
+	}
+	else
+	{
+		mode+=1;
 	}
 
 	//////////////////////
-	if (mode==1)
+	if ((error_login->Visible == false)&&(error_name->Visible == false)&&(error_surname->Visible == false)&&(error_otch->Visible == false)&&(error_pass->Visible == false)&&(error_pass2->Visible == false)&&(error_spec->Visible == false))
 	{
 		
 		if (System::Windows::Forms::DialogResult::Yes == MessageBox::Show("Вы уверены, что хотите создать такой профиль?", "Подтверждение", MessageBoxButtons::YesNo, MessageBoxIcon::Warning))
 		{
-		str = doc.return_surname() +" "+ doc.return_name() + " " + doc.return_otch();
-		std::ofstream out("doctors.txt");
-		out << str;
-		//p1 = fopen("doctors.txt", "a");
-		//fprintf(p1, "%s", str);
-		//fclose(p1);
-		
+		str = doc.return_surname() + " " + doc.return_name() + " " + doc.return_otch()+" " + doc.return_speciality()+" "+ context.marshal_as<std::string>(textBox_login->Text); //char str1[153]; strcpy(str1,str.c_str());
+		for (int i = str.length(); i < 100; i++)
+		{
+			str += " ";
+		}
+		str+= '\0';
+		std::ofstream out("doctors.txt",std::ios::app);
+		if (out.is_open())
+		{
+			//MessageBox::Show("Файл открыт", "Подтверждение", MessageBoxButtons::OK, MessageBoxIcon::Information);
+			out << str << std::endl;
+		}
+		out.close();
+
+		str = context.marshal_as<std::string>(textBox_login->Text)+" "+ context.marshal_as<std::string>(textBox_password->Text);
+		for (int i = str.length(); i < 153; i++)
+		{
+			str += " ";
+		}
+		str+= '\0';
+		std::ofstream out1("logins.txt", std::ios::app);
+		out1 << str << std::endl;
+		out1.close();
+
 		label1_mode->Location = System::Drawing::Point(label1_mode->Location.X, 150);;
 		label1_mode->Text = "Выберите, что вы хотите сделать";
 		create->Visible = true;
@@ -533,14 +709,25 @@ private: System::Void accept_Click(System::Object^ sender, System::EventArgs^ e)
 		textBox_password->Visible = false;
 		textBox_password2->Visible = false;
 		accept->Visible = false;
+		error_login->Visible = false;
+		error_name->Visible = false;
+		error_surname->Visible = false;
+		error_otch->Visible = false;
+		error_pass->Visible = false;
+		error_pass2->Visible = false;
+		error_spec->Visible = false;
 		}
 		else
 		{
 			mode == 0;
 		}
 	}
-	_fcloseall();
+	else
+	{
+		MessageBox::Show("Ошибка", "Ошибка", MessageBoxButtons::OK, MessageBoxIcon::Error);
 	}
+	//_fcloseall();
+	
 	
 	//p1 = fopen("doctors.txt", "a");
 	//fprintf(p1, "%s", str);
