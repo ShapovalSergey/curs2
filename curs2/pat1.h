@@ -2,6 +2,7 @@
 #include "patient.cpp"
 #include <iostream>
 #include <stdio.h>
+#include <cstdlib>
 #include <conio.h>
 #include <windows.h>
 #include <string>
@@ -63,6 +64,8 @@ namespace curs2 {
 	private: System::Windows::Forms::Label^ birth_date;
 	private: System::Windows::Forms::Button^ back;
 	private: System::Windows::Forms::Button^ enter;
+	private: System::Windows::Forms::Button^ create;
+
 
 	protected:
 
@@ -99,6 +102,7 @@ namespace curs2 {
 			this->birth_date = (gcnew System::Windows::Forms::Label());
 			this->back = (gcnew System::Windows::Forms::Button());
 			this->enter = (gcnew System::Windows::Forms::Button());
+			this->create = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// comboBox_spec
@@ -250,9 +254,10 @@ namespace curs2 {
 			// 
 			// dateTimePicker1
 			// 
+			this->dateTimePicker1->Format = System::Windows::Forms::DateTimePickerFormat::Short;
 			this->dateTimePicker1->Location = System::Drawing::Point(319, 350);
 			this->dateTimePicker1->Name = L"dateTimePicker1";
-			this->dateTimePicker1->Size = System::Drawing::Size(200, 20);
+			this->dateTimePicker1->Size = System::Drawing::Size(75, 20);
 			this->dateTimePicker1->TabIndex = 38;
 			this->dateTimePicker1->Visible = false;
 			// 
@@ -329,12 +334,28 @@ namespace curs2 {
 			this->enter->Visible = false;
 			this->enter->Click += gcnew System::EventHandler(this, &pat1::enter_Click);
 			// 
+			// create
+			// 
+			this->create->BackColor = System::Drawing::SystemColors::ControlLightLight;
+			this->create->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->create->ForeColor = System::Drawing::SystemColors::ControlText;
+			this->create->Location = System::Drawing::Point(631, 96);
+			this->create->Name = L"create";
+			this->create->Size = System::Drawing::Size(150, 25);
+			this->create->TabIndex = 45;
+			this->create->Text = L"Создать профиль";
+			this->create->UseVisualStyleBackColor = false;
+			this->create->Visible = false;
+			this->create->Click += gcnew System::EventHandler(this, &pat1::create_Click);
+			// 
 			// pat1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
 			this->ClientSize = System::Drawing::Size(784, 561);
+			this->Controls->Add(this->create);
 			this->Controls->Add(this->enter);
 			this->Controls->Add(this->back);
 			this->Controls->Add(this->birth_date);
@@ -419,7 +440,7 @@ namespace curs2 {
 		}
 		fcloseall();
 		p2 = fopen("patients.txt", "r");
-		for (int i = 0; i < n; i++)
+		for (int i = 0; i < p; i++)
 		{
 			vivod = "";
 			fgets(str1, 153, p2);
@@ -451,8 +472,11 @@ namespace curs2 {
 	}
 	private: System::Void checkBox1_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
 	{
+		
 		if (checkBox1->Checked==true)
-		{
+		{	
+			comboBox_pat->Text = "";
+			checkBox1->Checked = true;
 			label1_mode->Visible = true;
 			label_doc->Visible = true;
 			name->Visible = true;
@@ -472,11 +496,14 @@ namespace curs2 {
 			textBox_surname->Text = "";
 			textBox_otch->Text = "";
 			dateTimePicker1->Visible = true;
-			enter->Text = "Создать профиль и пройти опрос";
-			enter->Visible = true;
+			create->Visible = true;
+			//enter->Text = "Создать профиль и пройти опрос";
+			//enter->Visible = true;
+			
 		}
 		else if (checkBox1->Checked == false)
 		{
+			create->Visible = false;
 			label1_mode->Visible = false;
 			label_doc->Visible = false;
 			name->Visible = false;
@@ -506,68 +533,153 @@ private: System::Void back_Click(System::Object^ sender, System::EventArgs^ e)
 	this->Close();
 }
 private: System::Void comboBox_pat_TextChanged(System::Object^ sender, System::EventArgs^ e) 
-{
+{	
+	checkBox1->Checked = false;
+	create->Visible = false;
+	label1_mode->Visible = false;
+	label_doc->Visible = false;
+	name->Visible = false;
+	birth_date->Visible = false;
+	surname->Visible = false;
+	otch->Visible = false;
+	label_doc->Visible = false;
+	textBox_name->Visible = false;
+	textBox_surname->Visible = false;
+	textBox_otch->Visible = false;
+	comboBox_spec->Visible = false;
+	textBox_name->Text = "";
+	textBox_surname->Text = "";
+	textBox_otch->Text = "";
+	dateTimePicker1->Visible = false;
+	
+	enter->Text = "Пройти опрос";
+	enter->Visible = false;
 	for (int i = 0; i < comboBox_pat->Items->Count; i++)
 	{
 	if (comboBox_pat->Text== comboBox_pat->Items[i]->ToString())
 	{
 	enter->Text = "Пройти опрос";
 	enter->Visible = true;
+	label_doc->Visible = true;
+	comboBox_spec->Visible = true;
+	label1_mode->Visible = true;
 	}
 	}
 	
 	
 }
 private: System::Void enter_Click(System::Object^ sender, System::EventArgs^ e) 
-{
-	if (enter->Text== "Создать профиль и пройти опрос")
-	{
-		error_name->Visible = false;
-		error_surname->Visible = false;
-		error_otch->Visible = false;
-		error_spec->Visible = false;
-		int mode = 1; char log[30]; char pass[70]; //setlocale(LC_ALL, "Russian");
-		FILE* p1; patient pat; std::string str; char str1[153], stroka[153];
-		fcloseall();
-		msclr::interop::marshal_context context;
-		pat.change_name(context.marshal_as<std::string>(textBox_name->Text));
-		pat.change_surname(context.marshal_as<std::string>(textBox_surname->Text));
-		pat.change_otch(context.marshal_as<std::string>(textBox_otch->Text));
-		for (int i = 0; i < pat.return_name().length(); i++)
-		{
-			if (pat.return_name()[i] == ' ')
-			{
-				error_name->Visible = true; error_name->Text = "Ошибка:\nНедопустимый символ пробел!!!";
-			}
-		}
-		for (int i = 0; i < pat.return_surname().length(); i++)
-		{
-			if (pat.return_surname()[i] == ' ')
-			{
-				error_surname->Visible = true; error_surname->Text = "Ошибка:\nНедопустимый символ пробел!!!";
-			}
-		}
-		for (int i = 0; i < pat.return_otch().length(); i++)
-		{
-			if (pat.return_otch()[i] == ' ')
-			{
-				error_otch->Visible = true; error_otch->Text = "Ошибка:\nНедопустимый символ пробел!!!";
-			}
-		}
-		if (pat.return_name().empty())
-		{
-			mode -= 1;  error_name->Text = "Ошибка: Пустое поле"; error_name->Visible = true;
-		}
-		if (pat.return_surname().empty())
-		{
-			mode -= 1;  error_surname->Text = "Ошибка: Пустое поле"; error_surname->Visible = true;
-		}
-		if (pat.return_otch().empty())
-		{
-			mode -= 1; error_otch->Text = "Ошибка: Пустое поле"; error_otch->Visible = true;
-		}
+{	
+	
 
+
+
+	
+}
+private: System::Void create_Click(System::Object^ sender, System::EventArgs^ e) 
+{
+	msclr::interop::marshal_context context; FILE* p2; std::string vivod;
+
+	error_name->Visible = false;
+	error_surname->Visible = false;
+	error_otch->Visible = false;
+	error_spec->Visible = false;
+	int mode = 1, day, month, year; char log[30]; char pass[70]; //setlocale(LC_ALL, "Russian");
+	FILE* p1; patient pat; std::string str; char str1[153], stroka[153]; String^ date = dateTimePicker1->Value.ToShortDateString();
+	//MessageBox::Show(date , "Подтверждение", MessageBoxButtons::OK, MessageBoxIcon::Information);
+	fcloseall();
+	pat.change_name(context.marshal_as<std::string>(textBox_name->Text));
+	pat.change_surname(context.marshal_as<std::string>(textBox_surname->Text));
+	pat.change_otch(context.marshal_as<std::string>(textBox_otch->Text));
+	for (int i = 0; i < pat.return_name().length(); i++)
+	{
+		if (pat.return_name()[i] == ' ')
+		{
+			error_name->Visible = true; error_name->Text = "Ошибка:\nНедопустимый символ пробел!!!";
+		}
 	}
+	for (int i = 0; i < pat.return_surname().length(); i++)
+	{
+		if (pat.return_surname()[i] == ' ')
+		{
+			error_surname->Visible = true; error_surname->Text = "Ошибка:\nНедопустимый символ пробел!!!";
+		}
+	}
+	for (int i = 0; i < pat.return_otch().length(); i++)
+	{
+		if (pat.return_otch()[i] == ' ')
+		{
+			error_otch->Visible = true; error_otch->Text = "Ошибка:\nНедопустимый символ пробел!!!";
+		}
+	}
+	if (pat.return_name().empty())
+	{
+		mode -= 1;  error_name->Text = "Ошибка: Пустое поле"; error_name->Visible = true;
+	}
+	if (pat.return_surname().empty())
+	{
+		mode -= 1;  error_surname->Text = "Ошибка: Пустое поле"; error_surname->Visible = true;
+	}
+	if (pat.return_otch().empty())
+	{
+		mode -= 1; error_otch->Text = "Ошибка: Пустое поле"; error_otch->Visible = true;
+	}
+	strcpy(stroka, context.marshal_as<const char*>(date));
+	char* ptr = strtok(stroka, ".");
+	pat.change_day_of_birth(std::atoi(ptr));  ptr = strtok(NULL, ".");
+	pat.change_month_of_birth(std::atoi(ptr)); ptr = strtok(NULL, ".");
+	pat.change_year_of_birth(std::atoi(ptr));
+	if ((error_name->Visible == false) && (error_surname->Visible == false) && (error_otch->Visible == false))
+	{
+		if (System::Windows::Forms::DialogResult::Yes == MessageBox::Show("Вы уверены, что хотите создать такой профиль?", "Подтверждение", MessageBoxButtons::YesNo, MessageBoxIcon::Warning))
+		{
+			str = pat.return_surname() + " " + pat.return_name() + " " + pat.return_otch() + " " + std::to_string(pat.return_day_of_birth()) + " " + std::to_string(pat.return_month_of_birth()) + " " + std::to_string(pat.return_year_of_birth());
+			for (int i = str.length(); i < 153; i++)
+			{
+				str += " ";
+			}
+			str += '\0';
+			std::ofstream out("patients.txt", std::ios::app);
+			if (out.is_open())
+			{
+				MessageBox::Show("" + str.length(), "Подтверждение", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				out << str << std::endl;
+			}
+			out.close();
+
+
+			int p = -2;
+			p2 = fopen("patients.txt", "r");
+			if (p2 == NULL)
+			{
+				p2 = fopen("patients.txt", "w");
+			}
+			fcloseall();
+			p2 = fopen("patients.txt", "r");
+			for (int i = 0; fscanf(p2, "%s", str) != EOF; i++)
+			{
+				fseek(p2, i * 153, SEEK_SET);
+				p++;
+			}
+			fcloseall();
+
+			fcloseall();
+			error_name->Visible = false;
+			error_surname->Visible = false;
+			error_otch->Visible = false;
+			textBox_name->Text = "";
+			textBox_surname->Text = "";
+			textBox_otch->Text = "";
+
+
+
+		}
+	}
+	else
+	{
+		MessageBox::Show("Ошибка", "Ошибка", MessageBoxButtons::OK, MessageBoxIcon::Error);
+	}
+	//MessageBox::Show(context.marshal_as<String^>(str), "Подтверждение", MessageBoxButtons::OK, MessageBoxIcon::Information);
 }
 };
 }
