@@ -163,6 +163,7 @@ namespace curs2 {
 			// textBox_name
 			// 
 			this->textBox_name->Location = System::Drawing::Point(319, 250);
+			this->textBox_name->MaxLength = 40;
 			this->textBox_name->Name = L"textBox_name";
 			this->textBox_name->Size = System::Drawing::Size(158, 20);
 			this->textBox_name->TabIndex = 32;
@@ -171,6 +172,7 @@ namespace curs2 {
 			// textBox_otch
 			// 
 			this->textBox_otch->Location = System::Drawing::Point(319, 300);
+			this->textBox_otch->MaxLength = 40;
 			this->textBox_otch->Name = L"textBox_otch";
 			this->textBox_otch->Size = System::Drawing::Size(158, 20);
 			this->textBox_otch->TabIndex = 31;
@@ -179,6 +181,7 @@ namespace curs2 {
 			// textBox_surname
 			// 
 			this->textBox_surname->Location = System::Drawing::Point(319, 200);
+			this->textBox_surname->MaxLength = 40;
 			this->textBox_surname->Name = L"textBox_surname";
 			this->textBox_surname->Size = System::Drawing::Size(158, 20);
 			this->textBox_surname->TabIndex = 30;
