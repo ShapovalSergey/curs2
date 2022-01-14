@@ -668,7 +668,7 @@ private: System::Void accept_Click(System::Object^ sender, System::EventArgs^ e)
 	}
 	if (doc.return_name().empty())
 	{
-		mode-=1; error_name->Visible = true;
+		mode -= 1; error_name->Text = "Ошибка: Пустое поле"; error_name->Visible = true;
 	}
 	else
 	{
@@ -676,7 +676,7 @@ private: System::Void accept_Click(System::Object^ sender, System::EventArgs^ e)
 	}
 	if (doc.return_surname().empty())
 	{
-		mode-=1; error_surname->Visible = true;
+		mode-=1;  error_surname->Text = "Ошибка: Пустое поле"; error_surname->Visible = true;
 	}
 	else
 	{
@@ -684,7 +684,7 @@ private: System::Void accept_Click(System::Object^ sender, System::EventArgs^ e)
 	}
 	if (doc.return_otch().empty())
 	{
-		mode-=1; error_otch->Visible = true;
+		mode-=1; error_otch->Text = "Ошибка: Пустое поле"; error_otch->Visible = true;
 	}
 	else
 	{

@@ -1,4 +1,5 @@
 #pragma once
+#include "patient.cpp"
 #include <iostream>
 #include <stdio.h>
 #include <conio.h>
@@ -61,6 +62,7 @@ namespace curs2 {
 	private: System::Windows::Forms::ComboBox^ comboBox_pat;
 	private: System::Windows::Forms::Label^ birth_date;
 	private: System::Windows::Forms::Button^ back;
+	private: System::Windows::Forms::Button^ enter;
 
 	protected:
 
@@ -96,6 +98,7 @@ namespace curs2 {
 			this->comboBox_pat = (gcnew System::Windows::Forms::ComboBox());
 			this->birth_date = (gcnew System::Windows::Forms::Label());
 			this->back = (gcnew System::Windows::Forms::Button());
+			this->enter = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// comboBox_spec
@@ -280,6 +283,7 @@ namespace curs2 {
 			this->comboBox_pat->Name = L"comboBox_pat";
 			this->comboBox_pat->Size = System::Drawing::Size(223, 21);
 			this->comboBox_pat->TabIndex = 41;
+			this->comboBox_pat->TextChanged += gcnew System::EventHandler(this, &pat1::comboBox_pat_TextChanged);
 			// 
 			// birth_date
 			// 
@@ -307,12 +311,28 @@ namespace curs2 {
 			this->back->UseVisualStyleBackColor = false;
 			this->back->Click += gcnew System::EventHandler(this, &pat1::back_Click);
 			// 
+			// enter
+			// 
+			this->enter->BackColor = System::Drawing::SystemColors::ControlLightLight;
+			this->enter->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->enter->ForeColor = System::Drawing::SystemColors::ControlText;
+			this->enter->Location = System::Drawing::Point(622, 499);
+			this->enter->Name = L"enter";
+			this->enter->Size = System::Drawing::Size(150, 50);
+			this->enter->TabIndex = 44;
+			this->enter->Text = L"Пройти опрос";
+			this->enter->UseVisualStyleBackColor = false;
+			this->enter->Visible = false;
+			this->enter->Click += gcnew System::EventHandler(this, &pat1::enter_Click);
+			// 
 			// pat1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
 			this->ClientSize = System::Drawing::Size(784, 561);
+			this->Controls->Add(this->enter);
 			this->Controls->Add(this->back);
 			this->Controls->Add(this->birth_date);
 			this->Controls->Add(this->comboBox_pat);
@@ -449,6 +469,8 @@ namespace curs2 {
 			textBox_surname->Text = "";
 			textBox_otch->Text = "";
 			dateTimePicker1->Visible = true;
+			enter->Text = "Создать профиль и пройти опрос";
+			enter->Visible = true;
 		}
 		else if (checkBox1->Checked == false)
 		{
@@ -471,12 +493,78 @@ namespace curs2 {
 			textBox_surname->Text = "";
 			textBox_otch->Text = "";
 			dateTimePicker1->Visible = false;
+			enter->Text = "Пройти опрос";
+			enter->Visible = false;
 		}
 	}
 
 private: System::Void back_Click(System::Object^ sender, System::EventArgs^ e) 
 {
 	this->Close();
+}
+private: System::Void comboBox_pat_TextChanged(System::Object^ sender, System::EventArgs^ e) 
+{
+	for (int i = 0; i < comboBox_pat->Items->Count; i++)
+	{
+	if (comboBox_pat->Text== comboBox_pat->Items[i]->ToString())
+	{
+	enter->Text = "Пройти опрос";
+	enter->Visible = true;
+	}
+	}
+	
+	
+}
+private: System::Void enter_Click(System::Object^ sender, System::EventArgs^ e) 
+{
+	if (enter->Text== "Создать профиль и пройти опрос")
+	{
+		error_name->Visible = false;
+		error_surname->Visible = false;
+		error_otch->Visible = false;
+		error_spec->Visible = false;
+		int mode = 1; char log[30]; char pass[70]; //setlocale(LC_ALL, "Russian");
+		FILE* p1; patient pat; std::string str; char str1[153], stroka[153];
+		fcloseall();
+		msclr::interop::marshal_context context;
+		pat.change_name(context.marshal_as<std::string>(textBox_name->Text));
+		pat.change_surname(context.marshal_as<std::string>(textBox_surname->Text));
+		pat.change_otch(context.marshal_as<std::string>(textBox_otch->Text));
+		for (int i = 0; i < pat.return_name().length(); i++)
+		{
+			if (pat.return_name()[i] == ' ')
+			{
+				error_name->Visible = true; error_name->Text = "Ошибка:\nНедопустимый символ пробел!!!";
+			}
+		}
+		for (int i = 0; i < pat.return_surname().length(); i++)
+		{
+			if (pat.return_surname()[i] == ' ')
+			{
+				error_surname->Visible = true; error_surname->Text = "Ошибка:\nНедопустимый символ пробел!!!";
+			}
+		}
+		for (int i = 0; i < pat.return_otch().length(); i++)
+		{
+			if (pat.return_otch()[i] == ' ')
+			{
+				error_otch->Visible = true; error_otch->Text = "Ошибка:\nНедопустимый символ пробел!!!";
+			}
+		}
+		if (pat.return_name().empty())
+		{
+			mode -= 1;  error_name->Text = "Ошибка: Пустое поле"; error_name->Visible = true;
+		}
+		if (pat.return_surname().empty())
+		{
+			mode -= 1;  error_surname->Text = "Ошибка: Пустое поле"; error_surname->Visible = true;
+		}
+		if (pat.return_otch().empty())
+		{
+			mode -= 1; error_otch->Text = "Ошибка: Пустое поле"; error_otch->Visible = true;
+		}
+
+	}
 }
 };
 }

@@ -18,7 +18,7 @@ private:
 	int month_of_birth;
 	int year_of_birth;
 public:
-	patient();
+	patient() {};
 	patient(std::string name, std::string surname, std::string otch, int age, bool sex, int height, int weight, int day_of_birth,int month_of_birth, int year_of_birth) 
 	{
 		person(name, surname, otch);
