@@ -1,5 +1,6 @@
 #pragma once
 #include "doc1.h"
+#include "pat1.h"
 #include "doctor.cpp"
 namespace curs2 {
 
@@ -98,6 +99,7 @@ namespace curs2 {
 			this->patient->TabIndex = 2;
 			this->patient->Text = L"Пациент";
 			this->patient->UseVisualStyleBackColor = false;
+			this->patient->Click += gcnew System::EventHandler(this, &MyForm::patient_Click);
 			// 
 			// doctor
 			// 
@@ -136,5 +138,10 @@ namespace curs2 {
 		f->Show();
 		//this->Hide();
 	}
+private: System::Void patient_Click(System::Object^ sender, System::EventArgs^ e) 
+{
+	pat1^ f = gcnew pat1();
+	f->Show();
+}
 };
 }

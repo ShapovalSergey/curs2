@@ -126,6 +126,7 @@
     <ClCompile Include="opros1.cpp" />
     <ClCompile Include="opros2.cpp" />
     <ClCompile Include="opros3.cpp" />
+    <ClCompile Include="pat1.cpp" />
     <ClCompile Include="patient.cpp" />
     <ClCompile Include="person.cpp" />
     <ClCompile Include="visit.cpp" />
@@ -145,6 +146,9 @@
     <ClInclude Include="opros1.h" />
     <ClInclude Include="opros2.h" />
     <ClInclude Include="opros3.h" />
+    <ClInclude Include="pat1.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="patient.h" />
     <ClInclude Include="person.h" />
     <ClInclude Include="visit.h" />
@@ -158,6 +162,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MyForm.resx">
       <DependentUpon>MyForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pat1.resx">
+      <DependentUpon>pat1.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -648,22 +648,23 @@ private: System::Void accept_Click(System::Object^ sender, System::EventArgs^ e)
 
 
 
-	if ((comboBox_spec->Text!= "Гастроэнтеролог")&&(comboBox_spec->Text != "Невролог")&&(comboBox_spec->Text != "Оториноларинголог"))
-	{
-		mode-=1;
-		error_spec->Visible = true;
-	}
-	else if (comboBox_spec->SelectedIndex == 1)
+	
+	 if (comboBox_spec->Text == "Гастроэнтеролог")
 	{
 		doc.change_speciality("Гастроэнтеролог"); mode+=1;
 	}
-	else if (comboBox_spec->SelectedIndex == 2)
+	else if (comboBox_spec->Text == "Невролог")
 	{
 		doc.change_speciality("Невролог"); mode+=1;
 	}
-	else if (comboBox_spec->SelectedIndex == 3)
+	else if (comboBox_spec->Text == "Оториноларинголог")
 	{
 		doc.change_speciality("Оториноларинголог"); mode+=1;
+	}
+	else if ((comboBox_spec->Text!= "Гастроэнтеролог")&&(comboBox_spec->Text != "Невролог")&&(comboBox_spec->Text != "Оториноларинголог"))
+	{
+		mode-=1;
+		error_spec->Visible = true;
 	}
 	if (doc.return_name().empty())
 	{
@@ -758,8 +759,8 @@ private: System::Void accept_Click(System::Object^ sender, System::EventArgs^ e)
 		
 		if (System::Windows::Forms::DialogResult::Yes == MessageBox::Show("Вы уверены, что хотите создать такой профиль?", "Подтверждение", MessageBoxButtons::YesNo, MessageBoxIcon::Warning))
 		{
-		str = doc.return_surname() + " " + doc.return_name() + " " + doc.return_otch()+" " + doc.return_speciality()+" "+ context.marshal_as<std::string>(textBox_login->Text); //char str1[153]; strcpy(str1,str.c_str());
-		for (int i = str.length(); i < 100; i++)
+		str = doc.return_surname() + " " + doc.return_name() + " " + doc.return_otch()+" " + doc.return_speciality() +" "+ context.marshal_as<std::string>(textBox_login->Text); //char str1[153]; strcpy(str1,str.c_str());
+		for (int i = str.length(); i < 153; i++)
 		{
 			str += " ";
 		}
@@ -767,7 +768,7 @@ private: System::Void accept_Click(System::Object^ sender, System::EventArgs^ e)
 		std::ofstream out("doctors.txt",std::ios::app);
 		if (out.is_open())
 		{
-			//MessageBox::Show("Файл открыт", "Подтверждение", MessageBoxButtons::OK, MessageBoxIcon::Information);
+			//MessageBox::Show(""+ context.marshal_as<String^>(doc.return_speciality()), "Подтверждение", MessageBoxButtons::OK, MessageBoxIcon::Information);
 			out << str << std::endl;
 		}
 		out.close();
