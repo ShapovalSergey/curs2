@@ -1,7 +1,9 @@
 #pragma once
+#include <string.h>
+#include <iostream>
 class ISaveOpros
 {
 public:
-	virtual void saveopros(ISaveOpros opr) = 0;
+	virtual void saveopros(std::string doc,std::string pat) = 0;
 };
 

@@ -1,5 +1,8 @@
 #pragma once
 #include <windows.h>
+#include "opros1.cpp"
+#include "opros2.cpp"
+#include "opros3.cpp"
 #include <iostream>
 #include <stdio.h>
 #include <cstdlib>
@@ -384,14 +387,24 @@ namespace curs2 {
 		{
 				if (System::Windows::Forms::DialogResult::Yes == MessageBox::Show("Вы уверены, что хотите сохранить опрос?", "Подтверждение", MessageBoxButtons::YesNo, MessageBoxIcon::Warning))
 		{
-
-
-
-
-
-
-
-
+					std::string s1 = d1 + " " + p1+" ";
+					//MessageBox::Show(s1, "Ошибка", MessageBoxButtons::OK, MessageBoxIcon::Error);
+					if (checkBox1->Text == "Онемения")
+					{
+						opros2 opr(checkBox1->Checked, checkBox2->Checked, checkBox3->Checked, checkBox4->Checked, checkBox5->Checked, checkBox6->Checked, checkBox7->Checked, checkBox8->Checked,  checkBox9->Checked);
+						opr.saveopros(d1,p1);
+					}
+					else if (checkBox1->Text == "Насморк")
+					{
+						opros1 opr(checkBox1->Checked, checkBox2->Checked, checkBox3->Checked, checkBox4->Checked, checkBox5->Checked, checkBox6->Checked, checkBox7->Checked, checkBox8->Checked, temperature);
+						opr.saveopros(d1, p1);
+					}
+					else if (checkBox1->Text == "Жидкий стул")
+					{
+						opros3 opr(checkBox1->Checked, checkBox2->Checked, checkBox3->Checked, checkBox4->Checked, checkBox5->Checked, checkBox6->Checked, checkBox7->Checked, checkBox8->Checked, checkBox9->Checked );
+						opr.saveopros(d1, p1);
+					}
+					this->Close();
 		}
 		}
 		

@@ -1,7 +1,11 @@
 #pragma once
 #define _CRT_SECURE_NO_WARNINGS
-#include <string.h>
 #include <iostream>
+#include <string.h>
+#include <sstream>
+#include <fstream>
+#include <msclr\marshal.h>
+#include <msclr/marshal_cppstd.h>
 #include "visit.h"
 #include "ISaveOpros.h"
 
@@ -9,7 +13,7 @@
 class opros1 :public ISaveOpros
 {
 private:
-	visit vis;
+	//visit vis;
 	bool sopli;
 	bool kashel;
 	bool bol_v_gorle;
@@ -17,13 +21,83 @@ private:
 	bool bol_v_ushah;
 	bool golov_bol;
 	bool oznob;
-	int temperature;
+	double temperature;
 	bool zhar;
+	std::string rezult() 
+	{
+		std::string vivod=" ";
+		if (sopli == true)
+		{
+			vivod += " 1 ";
+		}
+		else
+		{
+			vivod += " 0 ";
+		}	if (kashel == true)
+		{
+			vivod += "1 ";
+		}
+		else
+		{
+			vivod += "0 ";
+		}	if (bol_v_gorle == true)
+		{
+			vivod += "1 ";
+		}
+		else
+		{
+			vivod += "0 ";
+		}	if (zalozhen_nos == true)
+		{
+			vivod += "1 ";
+		}
+		else
+		{
+			vivod += "0 ";
+		}	if (bol_v_ushah == true)
+		{
+			vivod += "1 ";
+		}
+		else
+		{
+			vivod += "0 ";
+		}	if (golov_bol == true)
+		{
+			vivod += "1 ";
+		}
+		else
+		{
+			vivod += "0 ";
+		}	if (oznob == true)
+		{
+			vivod += "1 ";
+		}
+		else
+		{
+			vivod += "0 ";
+		}	if (zhar == true)
+		{
+			vivod += "1 ";
+		}
+		else
+		{
+			vivod += "0 ";
+		}	
+		msclr::interop::marshal_context context;
+		std::ostringstream strs;
+		strs << temperature;
+		vivod += strs.str();
+
+
+		//vivod = vivod+context.marshal_as<std::string>(temperature.ToString());
+		return vivod;
+	
+	};
 public:
 	opros1() {};
-	opros1(visit vis, bool sopli, bool kashel, bool bol_v_gorle, bool zalozhen_nos, bool bol_v_ushah, bool golov_bol, bool oznob, bool zhar, int temperature) 
+	opros1( bool sopli, bool kashel, bool bol_v_gorle, bool zalozhen_nos, bool bol_v_ushah, bool golov_bol, bool oznob, bool zhar, double temperature)
 	{
-		this->vis = vis;
+
 		this->sopli = sopli;
 		this->kashel = kashel;
 		this->bol_v_gorle = bol_v_gorle;
@@ -34,8 +108,8 @@ public:
 		this->zhar = zhar;
 		this->temperature = temperature;
 	};
-	visit return_vis() { return vis; };
-	int return_temperature() { return temperature; };
+	//visit return_vis() { return vis; };
+	double return_temperature() { return temperature; };
 	bool return_sopli() { return sopli; };
 	bool return_kashel() { return kashel; };
 	bool return_bol_v_gorle() { return bol_v_gorle; };
@@ -44,6 +118,18 @@ public:
 	bool return_golov_bol() { return golov_bol; };
 	bool return_oznob() { return oznob; };
 	bool return_zhar() { return zhar; };
-	virtual void saveopros() {};
+	virtual void saveopros(std::string doc, std::string pat)
+	{
+		std::string str;
+		str=doc + " " +pat + " " + rezult();
+		for (int i = str.length(); i < 113; i++)
+		{
+			str += " ";
+		}
+		str += '\0';
+		std::ofstream out1("opros1.txt", std::ios::app);
+		out1 << str << std::endl;
+		out1.close();
+	};
 };
 
