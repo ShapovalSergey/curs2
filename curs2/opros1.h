@@ -20,7 +20,7 @@ private:
 	int temperature;
 	bool zhar;
 public:
-	opros1();
+	opros1() {};
 	opros1(visit vis, bool sopli, bool kashel, bool bol_v_gorle, bool zalozhen_nos, bool bol_v_ushah, bool golov_bol, bool oznob, bool zhar, int temperature) 
 	{
 		this->vis = vis;

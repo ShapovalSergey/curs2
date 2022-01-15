@@ -123,6 +123,7 @@
     <ClCompile Include="doc_enter.cpp" />
     <ClCompile Include="ISaveOpros.cpp" />
     <ClCompile Include="MyForm.cpp" />
+    <ClCompile Include="opr.cpp" />
     <ClCompile Include="opros1.cpp" />
     <ClCompile Include="opros2.cpp" />
     <ClCompile Include="opros3.cpp" />
@@ -141,6 +142,9 @@
     </ClInclude>
     <ClInclude Include="ISaveOpros.h" />
     <ClInclude Include="MyForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="opr.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="opros1.h" />
@@ -162,6 +166,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MyForm.resx">
       <DependentUpon>MyForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="opr.resx">
+      <DependentUpon>opr.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pat1.resx">
       <DependentUpon>pat1.h</DependentUpon>

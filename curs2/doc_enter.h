@@ -1,5 +1,5 @@
 #pragma once
-#include "doc1.cpp"
+//#include "doc1.cpp"
 #include "doctor.cpp"
 #include <iostream>
 #include <stdio.h>

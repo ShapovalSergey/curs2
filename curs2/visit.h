@@ -9,36 +9,36 @@
  class visit
 {
 private:
-	doctor doc;
-	patient pat;
+	//doctor doc;
+	//patient pat;
 	int day_date;
 	int month_date;
 	int year_date;
 	int hour;
 	int minute;
-	std::string location;
+	//std::string location;
 	int opros_type;
 	//opros opr;
 public:
-	visit();
-	visit(doctor doc,patient pat, int day_date, int month_date, int year_date, int hour, int minute, std::string location) 
+	visit() {};
+	visit(/*doctor doc,patient pat,*/ int day_date, int month_date, int year_date, int hour, int minute) 
 	{
-		this->doc = doc;
-		this->pat = pat;
+	//	this->doc = doc;
+		//this->pat = pat;
 		this->day_date = day_date;
 		this->month_date = month_date;
 		this->year_date = year_date;
 		this->hour = hour;
 		this->minute = minute;
 	};
-	void change_doc(doctor a) 
-	{
-		this->doc = a;
-	};
-	void change_pat(patient a) 
-	{
-		this->pat = a;
-	};
+	//void change_doc(doctor a) 
+	//{
+	//	this->doc = a;
+	//};
+	//void change_pat(patient a) 
+	//{
+	//	this->pat = a;
+	//};
 	void change_day_date(int day_date) 
 	{
 		this->day_date = day_date;
@@ -59,10 +59,10 @@ public:
 	{
 		this->minute = minute;
 	};
-	void change_location(std::string loc) { this->location = loc; };
-	std::string return_loc() { return location; };
-	doctor return_doc() { return doc; };
-	patient return_pat() { return pat; };
+	//void change_location(std::string loc) { this->location = loc; };
+	//std::string return_loc() { return location; };
+	//doctor return_doc() { return doc; };
+	//patient return_pat() { return pat; };
 	int return_day_date() { return day_date; };
 	int return_month_date() { return month_date; };
 	int return_year_date() { return year_date; };

@@ -1,5 +1,5 @@
 #pragma once
-#include "MyForm.h"
+//#include "MyForm.h"
 #include "doc_enter.h"
 #include "doctor.cpp"
 #include <iostream>

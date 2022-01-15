@@ -19,7 +19,7 @@ private:
 	bool spazm_v_zhivote;
 	bool bol_v_zhivote;
 public:
-	opros3();
+	opros3() {};
 	opros3(visit vis, bool zhidkiy_stul, bool izhoga, bool zapor, bool poterya_apetita, bool snizhenie_vesa, bool toshnota, bool rvota, bool bol_v_zhivote, bool spazm_v_zhivote)
 	{
 		this->vis = vis;

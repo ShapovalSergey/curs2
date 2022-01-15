@@ -1,17 +1,20 @@
 #pragma once
+#include <windows.h>
 #include "patient.cpp"
+#include "opr.h"
 #include <iostream>
 #include <stdio.h>
 #include <cstdlib>
 #include <conio.h>
-#include <windows.h>
 #include <string>
 #include <stdlib.h>
 #include <msclr\marshal.h>
 #include <msclr/marshal_cppstd.h>
 #include <fstream>
-namespace curs2 {
 
+
+namespace curs2 {
+	
 	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
@@ -472,18 +475,19 @@ namespace curs2 {
 	}
 	private: System::Void checkBox1_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
 	{
-		
+		error_spec->Visible = false;
+		comboBox_spec->Text = "";
 		if (checkBox1->Checked==true)
 		{	
 			comboBox_pat->Text = "";
 			checkBox1->Checked = true;
 			label1_mode->Visible = true;
-			label_doc->Visible = true;
+			//label_doc->Visible = true;
 			name->Visible = true;
 			birth_date->Visible = true;
 			surname->Visible = true;
 			otch->Visible = true;
-			label_doc->Visible = true;
+			//label_doc->Visible = true;
 			textBox_name->Visible = true;
 			textBox_surname->Visible = true;
 			textBox_otch->Visible = true;
@@ -491,7 +495,7 @@ namespace curs2 {
 			//error_name->Visible = true;
 			//error_surname->Visible = true;
 			//error_otch->Visible = true;
-			comboBox_spec->Visible = true;
+			//comboBox_spec->Visible = true;
 			textBox_name->Text = "";
 			textBox_surname->Text = "";
 			textBox_otch->Text = "";
@@ -570,7 +574,27 @@ private: System::Void comboBox_pat_TextChanged(System::Object^ sender, System::E
 }
 private: System::Void enter_Click(System::Object^ sender, System::EventArgs^ e) 
 {	
-	
+	msclr::interop::marshal_context context; // std::string p1, d1;
+	error_spec->Visible=true;
+	for (int i = 0; i < comboBox_spec->Items->Count; i++)
+	{
+		if (comboBox_spec->Text == comboBox_spec->Items[i]->ToString())
+		{
+			error_spec->Visible = false;
+		}
+	}
+	if (error_spec->Visible == true)
+	{
+		MessageBox::Show("Ошибка", "Ошибка", MessageBoxButtons::OK, MessageBoxIcon::Error);
+	}
+	else
+	{
+		d1 = context.marshal_as<std::string>(comboBox_spec->Text);
+		p1 = context.marshal_as<std::string>(comboBox_pat->Text);
+		opr^ f = gcnew opr();
+		f->Show();
+		this->Close();
+	}
 
 
 

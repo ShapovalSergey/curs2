@@ -20,7 +20,7 @@ private:
 	bool shataet_pri_hodbe;
 	bool bol_v_spine;
 public:
-	opros2();
+	opros2() {};
 	opros2(visit vis, bool onemenie, bool golovokruzhenie, bool slabost, bool pokalivanie, bool podergivanie, bool golov_bol, bool epilep_pripadki, bool bol_v_spine, bool shataet_pri_hodbe)
 	{
 		this->vis = vis;
