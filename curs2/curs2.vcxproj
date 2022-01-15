@@ -127,6 +127,7 @@
     <ClCompile Include="opros1.cpp" />
     <ClCompile Include="opros2.cpp" />
     <ClCompile Include="opros3.cpp" />
+    <ClCompile Include="oproscheck.cpp" />
     <ClCompile Include="pat1.cpp" />
     <ClCompile Include="patient.cpp" />
     <ClCompile Include="person.cpp" />
@@ -150,6 +151,9 @@
     <ClInclude Include="opros1.h" />
     <ClInclude Include="opros2.h" />
     <ClInclude Include="opros3.h" />
+    <ClInclude Include="oproscheck.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="pat1.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -169,6 +173,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="opr.resx">
       <DependentUpon>opr.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="oproscheck.resx">
+      <DependentUpon>oproscheck.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pat1.resx">
       <DependentUpon>pat1.h</DependentUpon>

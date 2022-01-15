@@ -1,7 +1,9 @@
 #pragma once
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
+//#include <ctime>
 #include <string.h>
+#include <string>
 #include <sstream>
 #include <fstream>
 #include <msclr\marshal.h>
@@ -120,8 +122,13 @@ public:
 	bool return_zhar() { return zhar; };
 	virtual void saveopros(std::string doc, std::string pat)
 	{
-		std::string str;
-		str=doc + " " +pat + " " + rezult();
+		std::string str; time_t now = time(0); tm* ltm = localtime(&now); int day, month, year, hour, minute;
+		day = ltm->tm_mday;
+		month = 1 + ltm->tm_mon;
+		year = 1900 + ltm->tm_year;
+		hour = ltm->tm_hour;
+		minute = ltm->tm_min;
+		str = doc + " " + pat + " " + std::to_string(day) + "." + std::to_string(month) + "." + std::to_string(year) + "_" + std::to_string(hour) + "-" + std::to_string(minute) + " " + rezult();
 		for (int i = str.length(); i < 113; i++)
 		{
 			str += " ";

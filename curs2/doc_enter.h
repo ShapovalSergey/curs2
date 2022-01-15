@@ -59,6 +59,8 @@ namespace curs2 {
 	private: System::Windows::Forms::Label^ error_pass;
 	private: System::Windows::Forms::Label^ error_login;
 	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::ComboBox^ comboBox_pat;
+	private: System::Windows::Forms::Label^ label2;
 	protected:
 
 	private:
@@ -84,6 +86,8 @@ namespace curs2 {
 			this->error_pass = (gcnew System::Windows::Forms::Label());
 			this->error_login = (gcnew System::Windows::Forms::Label());
 			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->comboBox_pat = (gcnew System::Windows::Forms::ComboBox());
+			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// back
@@ -199,12 +203,34 @@ namespace curs2 {
 			this->label1->Text = L"label1";
 			this->label1->Visible = false;
 			// 
+			// comboBox_pat
+			// 
+			this->comboBox_pat->FormattingEnabled = true;
+			this->comboBox_pat->Location = System::Drawing::Point(304, 321);
+			this->comboBox_pat->Name = L"comboBox_pat";
+			this->comboBox_pat->Size = System::Drawing::Size(223, 21);
+			this->comboBox_pat->TabIndex = 43;
+			this->comboBox_pat->Visible = false;
+			// 
+			// label2
+			// 
+			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->label2->Location = System::Drawing::Point(85, 319);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(213, 23);
+			this->label2->TabIndex = 42;
+			this->label2->Text = L"Выберите опрос из списка";
+			this->label2->Visible = false;
+			// 
 			// doc_enter
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
 			this->ClientSize = System::Drawing::Size(784, 561);
+			this->Controls->Add(this->comboBox_pat);
+			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->error_login);
 			this->Controls->Add(this->error_pass);
@@ -272,12 +298,26 @@ namespace curs2 {
 		};
 	private: System::Void back_Click(System::Object^ sender, System::EventArgs^ e) 
 	{
-		this->Close();
+		if (back->Text=="Выйти")
+		{
+			if (System::Windows::Forms::DialogResult::Yes == MessageBox::Show("Вы уверены, что хотите выйти?", "Выход", MessageBoxButtons::YesNo, MessageBoxIcon::Warning))
+			{
+				this->Close();
+			}
+		}
+		else
+		{
+				this->Close();
+		}
+		//
 	}
 	private: System::Void doc_enter_Load(System::Object^ sender, System::EventArgs^ e) 
 	{
 		textBox_login->Text = "";
 		textBox_password->Text = "";
+		label2->Visible = false;
+		label1->Visible = false;
+		comboBox_pat->Visible = false;
 	}
 private: System::Void enter_Click(System::Object^ sender, System::EventArgs^ e) 
 {
@@ -352,25 +392,27 @@ private: System::Void enter_Click(System::Object^ sender, System::EventArgs^ e)
 
 	if ((error_pass->Visible == false)&&(error_login->Visible == false))
 	{
-		std::string vivod,vivod1,log;
+		std::string vivod,vivod1,log,spec,spec1,name,name1,pat1;
 		login->Visible = false;
 		password->Visible = false;
 		label1_mode->Visible = false;
 		textBox_login->Visible = false;
 		textBox_password->Visible = false;
 		enter->Visible = false;
+		label2->Visible = true;
+		comboBox_pat->Visible = true;
 		back->Text = "Выйти";
 		label1->Visible = true;
 		p2 = fopen("doctors.txt", "r");
 		for (int i = 0; i < n; i++)
 		{
-			vivod = "";
+			vivod = ""; name = "";
 			fgets(str1, 153, p2);
 			strcpy(stroka, str1);
 			char* ptr = strtok(stroka, " "); //ptr = strtok(NULL, " ");
 			if (ptr != NULL) 
 			{
-				vivod += ptr; vivod += ' '; ptr = strtok(NULL, " "); vivod += ptr; vivod += ' '; ptr = strtok(NULL, " "); vivod += ptr;  vivod += '\n'; ptr = strtok(NULL, " "); vivod += ptr; ptr = strtok(NULL, " "); log = ptr;
+				vivod += ptr; name += ptr; name += ' '; vivod += ' '; ptr = strtok(NULL, " "); vivod += ptr; name += ptr[0]; name += '.'; vivod += ' '; ptr = strtok(NULL, " "); vivod += ptr; name += ptr[0]; name += '.';   vivod += '\n'; ptr = strtok(NULL, " "); vivod += ptr; spec = ptr; ptr = strtok(NULL, " "); log = ptr;
 			//MessageBox::Show(context.marshal_as<String^>(vivod), "Подтверждение", MessageBoxButtons::OK, MessageBoxIcon::Information);
 			}
 			
@@ -380,16 +422,209 @@ private: System::Void enter_Click(System::Object^ sender, System::EventArgs^ e)
 				{
 					fgets(str1, 153, p2); strcpy(stroka, str1); ptr = strtok(stroka, " ");
 				}
-				vivod += ptr; vivod += ' '; ptr = strtok(NULL, " "); vivod += ptr; vivod += ' '; ptr = strtok(NULL, " "); vivod += ptr; vivod += '\n'; ptr = strtok(NULL, " "); vivod += ptr; ptr = strtok(NULL, " "); log = ptr;
+				vivod += ptr; name += ptr; name += ' '; vivod += ' '; ptr = strtok(NULL, " "); vivod += ptr; name += ptr[0]; name += '.'; vivod += ' '; ptr = strtok(NULL, " "); vivod += ptr; name += ptr[0]; name += '.';   vivod += '\n'; ptr = strtok(NULL, " "); vivod += ptr; spec = ptr; ptr = strtok(NULL, " "); log = ptr;
 			}
 			//MessageBox::Show(context.marshal_as<String^>(vivod), "Подтверждение", MessageBoxButtons::OK, MessageBoxIcon::Information);
 			if (textBox_login->Text->Equals(context.marshal_as<String^>(log)))
 			{
+				name1 = name;
+				spec1 = spec;
 				vivod1 = vivod;
 			}
 		}
 		fcloseall();
 		label1->Text = context.marshal_as<String^>(vivod1);
+		//MessageBox::Show(context.marshal_as<String^>(name1+spec1), "Подтверждение", MessageBoxButtons::OK, MessageBoxIcon::Information);
+		if (spec1=="Гастроэнтеролог")
+		{
+			p2 = fopen("opros3.txt", "r");
+			if (p2 == NULL)
+			{
+				p2 = fopen("opros3.txt", "w");
+			}
+			fcloseall();
+			int o = -2;
+			p2 = fopen("opros3.txt", "r");
+			for (int i = 0; fscanf(p2, "%s", str) != EOF; i++)
+			{
+				fseek(p2, i * 113, SEEK_SET);
+				o++;
+			}
+			std::string* mas = new std::string[o];
+			fcloseall();
+			p2 = fopen("opros3.txt", "r");
+			for (int i = 0; i < o; i++)
+			{
+				vivod = ""; pat1 = "";
+				fgets(str1, 113, p2);
+				strcpy(stroka, str1);
+				char* ptr = strtok(stroka, " "); //ptr = strtok(NULL, " ");
+				if (ptr != NULL)
+				{
+					mas[i] = str1;
+					vivod += ptr; vivod += ' '; ptr = strtok(NULL, " "); vivod += ptr; ptr = strtok(NULL, " "); ptr = strtok(NULL, " "); pat1 += ptr; pat1 += ' '; ptr = strtok(NULL, " "); pat1 += ptr; pat1 += ' '; ptr = strtok(NULL, " "); pat1 += ptr; 
+					//MessageBox::Show(context.marshal_as<String^>(vivod+" "+name1), "Подтверждение", MessageBoxButtons::OK, MessageBoxIcon::Information);
+					if (vivod==name1)
+					{
+						comboBox_pat->Items->Add(context.marshal_as<String^>(pat1));
+					}
+					//MessageBox::Show(context.marshal_as<String^>(vivod), "Подтверждение", MessageBoxButtons::OK, MessageBoxIcon::Information);
+					
+				}
+
+				else 	if (ptr == NULL)
+				{
+					while (ptr == NULL)
+					{
+						fgets(str1, 113, p2); strcpy(stroka, str1); ptr = strtok(stroka, " ");
+					}
+					mas[i] = str1;
+					vivod += ptr; vivod += ' '; ptr = strtok(NULL, " "); vivod += ptr; ptr = strtok(NULL, " "); ptr = strtok(NULL, " "); pat1 += ptr; pat1 += ' '; ptr = strtok(NULL, " "); pat1 += ptr; pat1 += ' '; ptr = strtok(NULL, " "); pat1 += ptr;
+					//MessageBox::Show(context.marshal_as<String^>(mas[i]), "Подтверждение", MessageBoxButtons::OK, MessageBoxIcon::Information);
+					if (vivod == name1)
+					{
+						comboBox_pat->Items->Add(context.marshal_as<String^>(pat1));
+					}
+				}
+			}
+			fcloseall();
+		}
+		else if (spec1 == "Невролог")
+		{
+
+			p2 = fopen("opros2.txt", "r");
+			if (p2 == NULL)
+			{
+				p2 = fopen("opros2.txt", "w");
+			}
+			fcloseall();
+			int o = -2;
+			p2 = fopen("opros2.txt", "r");
+			for (int i = 0; fscanf(p2, "%s", str) != EOF; i++)
+			{
+				fseek(p2, i * 113, SEEK_SET);
+				o++;
+			}
+			std::string* mas = new std::string[o];
+			fcloseall();
+			p2 = fopen("opros2.txt", "r");
+			for (int i = 0; i < o; i++)
+			{
+				vivod = ""; pat1 = "";
+				fgets(str1, 113, p2);
+				strcpy(stroka, str1);
+				char* ptr = strtok(stroka, " "); //ptr = strtok(NULL, " ");
+				if (ptr != NULL)
+				{
+					mas[i] = str1;
+					vivod += ptr; vivod += ' '; ptr = strtok(NULL, " "); vivod += ptr; ptr = strtok(NULL, " "); ptr = strtok(NULL, " "); pat1 += ptr; pat1 += ' '; ptr = strtok(NULL, " "); pat1 += ptr; pat1 += ' '; ptr = strtok(NULL, " "); pat1 += ptr;
+					//MessageBox::Show(context.marshal_as<String^>(vivod+" "+name1), "Подтверждение", MessageBoxButtons::OK, MessageBoxIcon::Information);
+					if (vivod == name1)
+					{
+						comboBox_pat->Items->Add(context.marshal_as<String^>(pat1));
+					}
+					//MessageBox::Show(context.marshal_as<String^>(vivod), "Подтверждение", MessageBoxButtons::OK, MessageBoxIcon::Information);
+
+				}
+
+				else 	if (ptr == NULL)
+				{
+					while (ptr == NULL)
+					{
+						fgets(str1, 113, p2); strcpy(stroka, str1); ptr = strtok(stroka, " ");
+					}
+					mas[i] = str1;
+					vivod += ptr; vivod += ' '; ptr = strtok(NULL, " "); vivod += ptr; ptr = strtok(NULL, " "); ptr = strtok(NULL, " "); pat1 += ptr; pat1 += ' '; ptr = strtok(NULL, " "); pat1 += ptr; pat1 += ' '; ptr = strtok(NULL, " "); pat1 += ptr;
+					//MessageBox::Show(context.marshal_as<String^>(mas[i]), "Подтверждение", MessageBoxButtons::OK, MessageBoxIcon::Information);
+					if (vivod == name1)
+					{
+						comboBox_pat->Items->Add(context.marshal_as<String^>(pat1));
+					}
+				}
+			}
+			fcloseall();
+
+
+
+
+
+
+		}
+		else if (spec1 == "Оториноларинголог")
+		{
+			p2 = fopen("opros1.txt", "r");
+			if (p2 == NULL)
+			{
+				p2 = fopen("opros1.txt", "w");
+			}
+			fcloseall();
+			int o = -2;
+			p2 = fopen("opros1.txt", "r");
+			for (int i = 0; fscanf(p2, "%s", str) != EOF; i++)
+			{
+				fseek(p2, i * 113, SEEK_SET);
+				o++;
+			}
+			std::string* mas = new std::string[o];
+			fcloseall();
+			p2 = fopen("opros1.txt", "r");
+			for (int i = 0; i < o; i++)
+			{
+				vivod = ""; pat1 = "";
+				fgets(str1, 113, p2);
+				strcpy(stroka, str1);
+				char* ptr = strtok(stroka, " "); //ptr = strtok(NULL, " ");
+				if (ptr != NULL)
+				{
+					mas[i] = str1;
+					vivod += ptr; vivod += ' '; ptr = strtok(NULL, " "); vivod += ptr; ptr = strtok(NULL, " "); ptr = strtok(NULL, " "); pat1 += ptr; pat1 += ' '; ptr = strtok(NULL, " "); pat1 += ptr; pat1 += ' '; ptr = strtok(NULL, " "); pat1 += ptr;
+					//MessageBox::Show(context.marshal_as<String^>(vivod+" "+name1), "Подтверждение", MessageBoxButtons::OK, MessageBoxIcon::Information);
+					if (vivod == name1)
+					{
+						comboBox_pat->Items->Add(context.marshal_as<String^>(pat1));
+					}
+					//MessageBox::Show(context.marshal_as<String^>(vivod), "Подтверждение", MessageBoxButtons::OK, MessageBoxIcon::Information);
+
+				}
+
+				else 	if (ptr == NULL)
+				{
+					while (ptr == NULL)
+					{
+						fgets(str1, 113, p2); strcpy(stroka, str1); ptr = strtok(stroka, " ");
+					}
+					mas[i] = str1;
+					vivod += ptr; vivod += ' '; ptr = strtok(NULL, " "); vivod += ptr; ptr = strtok(NULL, " "); ptr = strtok(NULL, " "); pat1 += ptr; pat1 += ' '; ptr = strtok(NULL, " "); pat1 += ptr; pat1 += ' '; ptr = strtok(NULL, " "); pat1 += ptr;
+					//MessageBox::Show(context.marshal_as<String^>(mas[i]), "Подтверждение", MessageBoxButtons::OK, MessageBoxIcon::Information);
+					if (vivod == name1)
+					{
+						comboBox_pat->Items->Add(context.marshal_as<String^>(pat1));
+					}
+				}
+			}
+			fcloseall();
+
+
+
+
+
+
+
+
+
+		}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

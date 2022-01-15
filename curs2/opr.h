@@ -375,7 +375,7 @@ namespace curs2 {
 			}
 		}
 		
-		MessageBox::Show(""+temperature, "Ошибка", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		//MessageBox::Show(""+temperature, "Ошибка", MessageBoxButtons::OK, MessageBoxIcon::Error);
 
 		if ((checkBox1->Text == "Насморк")&&(textBox_tmp->Text->Length==0))
 		{
