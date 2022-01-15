@@ -666,7 +666,7 @@ private: System::Void create_Click(System::Object^ sender, System::EventArgs^ e)
 			std::ofstream out("patients.txt", std::ios::app);
 			if (out.is_open())
 			{
-				MessageBox::Show("" + str.length(), "Подтверждение", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				//MessageBox::Show("" + str.length(), "Подтверждение", MessageBoxButtons::OK, MessageBoxIcon::Information);
 				out << str << std::endl;
 			}
 			out.close();

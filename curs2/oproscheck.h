@@ -1,5 +1,15 @@
 #pragma once
+#include <iostream>
+#include <stdio.h>
+#include <conio.h>
+#include <windows.h>
+#include <string>
+#include <stdlib.h>
+#include <msclr\marshal.h>
+#include <msclr/marshal_cppstd.h>
+#include <fstream>
 
+extern std::string fullstr;
 namespace curs2 {
 
 	using namespace System;
@@ -98,13 +108,12 @@ namespace curs2 {
 				static_cast<System::Byte>(204)));
 			this->tmp->Location = System::Drawing::Point(600, 274);
 			this->tmp->Name = L"tmp";
-			this->tmp->Size = System::Drawing::Size(181, 40);
+			this->tmp->Size = System::Drawing::Size(108, 20);
 			this->tmp->TabIndex = 76;
-			this->tmp->Text = L"Введите температуру,\r\nиспользуя точку";
+			this->tmp->Text = L"Температура";
 			// 
 			// textBox_tmp
 			// 
-			this->textBox_tmp->Enabled = false;
 			this->textBox_tmp->Location = System::Drawing::Point(551, 273);
 			this->textBox_tmp->MaxLength = 5;
 			this->textBox_tmp->Name = L"textBox_tmp";
@@ -123,6 +132,7 @@ namespace curs2 {
 			this->back->TabIndex = 61;
 			this->back->Text = L"Назад";
 			this->back->UseVisualStyleBackColor = false;
+			this->back->Click += gcnew System::EventHandler(this, &oproscheck::back_Click);
 			// 
 			// checkBox7
 			// 
@@ -237,7 +247,6 @@ namespace curs2 {
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(0, 20);
 			this->label1->TabIndex = 74;
-			this->label1->TextAlign = System::Drawing::ContentAlignment::TopCenter;
 			// 
 			// oproscheck
 			// 
@@ -268,7 +277,181 @@ namespace curs2 {
 #pragma endregion
 	private: System::Void oproscheck_Load(System::Object^ sender, System::EventArgs^ e) 
 	{
+		msclr::interop::marshal_context context; char stroka[173]; std::string vivod,spec;
+		//MessageBox::Show(context.marshal_as<String^>(fullstr), "Подтверждение", MessageBoxButtons::OK, MessageBoxIcon::Information);
+		std::vector<std::string> mass;
+		strcpy(stroka, fullstr.c_str());
+		char* ptr = strtok(stroka, " ");
+		vivod += "Доктор: "; vivod += ptr; vivod += ' '; ptr = strtok(NULL, " "); vivod += ptr; vivod += " - "; ptr = strtok(NULL, " "); vivod += ptr; spec += ptr; vivod += '\n';
+		vivod += "Пациент: "; ptr = strtok(NULL, " "); vivod += ptr; vivod += ' '; ptr = strtok(NULL, " "); vivod += ptr; vivod += '\n';
+		vivod += "Дата и время: "; ptr = strtok(NULL, " "); vivod += ptr;
+
+		if (spec == "Невролог")
+		{
+			label1->Text = context.marshal_as<String^>(vivod);
+			tmp->Visible = false;
+			textBox_tmp->Visible = false;
+			checkBox1->Text = "Онемения";
+			checkBox2->Text = "Кружится голова";
+			checkBox3->Text = "Мышечная слабость";
+			checkBox4->Text = "Покалывания";
+			checkBox5->Text = "Подергивания мышц";
+			checkBox6->Text = "Болит голова";
+			checkBox7->Text = "Эпилептические припадки";
+			checkBox8->Text = "Шатает при ходьбе";
+			checkBox9->Text = "Болит спина";
+			if ((ptr = strtok(NULL, " "))=="1")
+			{
+				checkBox1->Checked = true;
+			}
+			if ((ptr = strtok(NULL, " ")) == "1")
+			{
+				checkBox2->Checked = true;
+			}
+			if ((ptr = strtok(NULL, " ")) == "1")
+			{
+				checkBox3->Checked = true;
+			}
+			if ((ptr = strtok(NULL, " ")) == "1")
+			{
+				checkBox4->Checked = true;
+			}
+			if ((ptr = strtok(NULL, " ")) == "1")
+			{
+				checkBox5->Checked = true;
+			}
+			if ((ptr = strtok(NULL, " ")) == "1")
+			{
+				checkBox6->Checked = true;
+			}
+			if ((ptr = strtok(NULL, " ")) == "1")
+			{
+				checkBox7->Checked = true;
+			}
+			if ((ptr = strtok(NULL, " ")) == "1")
+			{
+				checkBox8->Checked = true;
+			}
+			if ((ptr = strtok(NULL, " ")) == "1")
+			{
+				checkBox9->Checked = true;
+			}
+		}
+		else if (spec == "Оториноларинголог")
+		{
+			label1->Text = context.marshal_as<String^>(vivod);
+			checkBox9->Visible = false;
+			checkBox1->Text = "Насморк";
+			checkBox2->Text = "Кашель";
+			checkBox3->Text = "Болит горло";
+			checkBox4->Text = "Заложен нос";
+			checkBox5->Text = "Боль в ушах";
+			checkBox6->Text = "Болит голова";
+			checkBox7->Text = "Озноб";
+			checkBox8->Text = "Жар";
+			if ((ptr = strtok(NULL, " ")) == "1")
+			{
+				checkBox1->Checked = true;
+			}
+			if ((ptr = strtok(NULL, " ")) == "1")
+			{
+				checkBox2->Checked = true;
+			}
+			if ((ptr = strtok(NULL, " ")) == "1")
+			{
+				checkBox3->Checked = true;
+			}
+			if ((ptr = strtok(NULL, " ")) == "1")
+			{
+				checkBox4->Checked = true;
+			}
+			if ((ptr = strtok(NULL, " ")) == "1")
+			{
+				checkBox5->Checked = true;
+			}
+			if ((ptr = strtok(NULL, " ")) == "1")
+			{
+				checkBox6->Checked = true;
+			}
+			if ((ptr = strtok(NULL, " ")) == "1")
+			{
+				checkBox7->Checked = true;
+			}
+			if ((ptr = strtok(NULL, " ")) == "1")
+			{
+				checkBox8->Checked = true;
+			}
+			ptr = strtok(NULL, " ");
+			textBox_tmp->Text = context.marshal_as<String^>(ptr);
+			textBox_tmp->Enabled = false;
+		}
+		else if (spec == "Гастроэнтеролог")
+		{
+			label1->Text = context.marshal_as<String^>(vivod);
+			tmp->Visible = false;
+			textBox_tmp->Visible = false;
+			checkBox1->Text = "Жидкий стул";
+			checkBox2->Text = "Изжога";
+			checkBox3->Text = "Запор";
+			checkBox4->Text = "Потеря аппетита";
+			checkBox5->Text = "Снижение веса";
+			checkBox6->Text = "Тошнота";
+			checkBox7->Text = "Рвота";
+			checkBox8->Text = "Спазм в животе";
+			checkBox9->Text = "Боль в животе";
+			if ((ptr = strtok(NULL, " ")) == "1")
+			{
+				checkBox1->Checked = true;
+			}
+			if ((ptr = strtok(NULL, " ")) == "1")
+			{
+				checkBox2->Checked = true;
+			}
+			if ((ptr = strtok(NULL, " ")) == "1")
+			{
+				checkBox3->Checked = true;
+			}
+			if ((ptr = strtok(NULL, " ")) == "1")
+			{
+				checkBox4->Checked = true;
+			}
+			if ((ptr = strtok(NULL, " ")) == "1")
+			{
+				checkBox5->Checked = true;
+			}
+			if ((ptr = strtok(NULL, " ")) == "1")
+			{
+				checkBox6->Checked = true;
+			}
+			if ((ptr = strtok(NULL, " ")) == "1")
+			{
+				checkBox7->Checked = true;
+			}
+			if ((ptr = strtok(NULL, " ")) == "1")
+			{
+				checkBox8->Checked = true;
+			}
+			if ((ptr = strtok(NULL, " ")) == "1")
+			{
+				checkBox9->Checked = true;
+			}
+		}
+
+
+
+
+
+
+
+
+
+
+
 
 	}
+private: System::Void back_Click(System::Object^ sender, System::EventArgs^ e) 
+{
+	this->Close();
+}
 };
 }
