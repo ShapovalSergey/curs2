@@ -114,6 +114,7 @@ namespace curs2 {
 			// 
 			// textBox_tmp
 			// 
+			this->textBox_tmp->Enabled = false;
 			this->textBox_tmp->Location = System::Drawing::Point(551, 273);
 			this->textBox_tmp->MaxLength = 5;
 			this->textBox_tmp->Name = L"textBox_tmp";
@@ -300,39 +301,40 @@ namespace curs2 {
 			checkBox7->Text = "Эпилептические припадки";
 			checkBox8->Text = "Шатает при ходьбе";
 			checkBox9->Text = "Болит спина";
-			if ((ptr = strtok(NULL, " "))=="1")
+
+			if (!strcmp((ptr = strtok(NULL, " ")), "1"))
 			{
 				checkBox1->Checked = true;
 			}
-			if ((ptr = strtok(NULL, " ")) == "1")
+			if (!strcmp((ptr = strtok(NULL, " ")) , "1"))
 			{
 				checkBox2->Checked = true;
 			}
-			if ((ptr = strtok(NULL, " ")) == "1")
+			if (!strcmp((ptr = strtok(NULL, " ")) , "1"))
 			{
 				checkBox3->Checked = true;
 			}
-			if ((ptr = strtok(NULL, " ")) == "1")
+			if (!strcmp((ptr = strtok(NULL, " ")) , "1"))
 			{
 				checkBox4->Checked = true;
 			}
-			if ((ptr = strtok(NULL, " ")) == "1")
+			if (!strcmp((ptr = strtok(NULL, " ")) , "1"))
 			{
 				checkBox5->Checked = true;
 			}
-			if ((ptr = strtok(NULL, " ")) == "1")
+			if (!strcmp((ptr = strtok(NULL, " ")) , "1"))
 			{
 				checkBox6->Checked = true;
 			}
-			if ((ptr = strtok(NULL, " ")) == "1")
+			if (!strcmp((ptr = strtok(NULL, " ")) , "1"))
 			{
 				checkBox7->Checked = true;
 			}
-			if ((ptr = strtok(NULL, " ")) == "1")
+			if (!strcmp((ptr = strtok(NULL, " ")) , "1"))
 			{
 				checkBox8->Checked = true;
 			}
-			if ((ptr = strtok(NULL, " ")) == "1")
+			if (!strcmp((ptr = strtok(NULL, " ")) , "1"))
 			{
 				checkBox9->Checked = true;
 			}
@@ -349,35 +351,35 @@ namespace curs2 {
 			checkBox6->Text = "Болит голова";
 			checkBox7->Text = "Озноб";
 			checkBox8->Text = "Жар";
-			if ((ptr = strtok(NULL, " ")) == "1")
+			if (!strcmp((ptr = strtok(NULL, " ")) , "1"))
 			{
 				checkBox1->Checked = true;
 			}
-			if ((ptr = strtok(NULL, " ")) == "1")
+			if (!strcmp((ptr = strtok(NULL, " ")) , "1"))
 			{
 				checkBox2->Checked = true;
 			}
-			if ((ptr = strtok(NULL, " ")) == "1")
+			if (!strcmp((ptr = strtok(NULL, " ")) , "1"))
 			{
 				checkBox3->Checked = true;
 			}
-			if ((ptr = strtok(NULL, " ")) == "1")
+			if (!strcmp((ptr = strtok(NULL, " ")) , "1"))
 			{
 				checkBox4->Checked = true;
 			}
-			if ((ptr = strtok(NULL, " ")) == "1")
+			if (!strcmp((ptr = strtok(NULL, " ")) , "1"))
 			{
 				checkBox5->Checked = true;
 			}
-			if ((ptr = strtok(NULL, " ")) == "1")
+			if (!strcmp((ptr = strtok(NULL, " ")) , "1"))
 			{
 				checkBox6->Checked = true;
 			}
-			if ((ptr = strtok(NULL, " ")) == "1")
+			if (!strcmp((ptr = strtok(NULL, " ")) , "1"))
 			{
 				checkBox7->Checked = true;
 			}
-			if ((ptr = strtok(NULL, " ")) == "1")
+			if (!strcmp((ptr = strtok(NULL, " ")) , "1"))
 			{
 				checkBox8->Checked = true;
 			}
@@ -399,39 +401,39 @@ namespace curs2 {
 			checkBox7->Text = "Рвота";
 			checkBox8->Text = "Спазм в животе";
 			checkBox9->Text = "Боль в животе";
-			if ((ptr = strtok(NULL, " ")) == "1")
+			if (!strcmp((ptr = strtok(NULL, " ")) , "1"))
 			{
 				checkBox1->Checked = true;
 			}
-			if ((ptr = strtok(NULL, " ")) == "1")
+			if (!strcmp((ptr = strtok(NULL, " ")) , "1"))
 			{
 				checkBox2->Checked = true;
 			}
-			if ((ptr = strtok(NULL, " ")) == "1")
+			if (!strcmp((ptr = strtok(NULL, " ")) , "1"))
 			{
 				checkBox3->Checked = true;
 			}
-			if ((ptr = strtok(NULL, " ")) == "1")
+			if (!strcmp((ptr = strtok(NULL, " ")) , "1"))
 			{
 				checkBox4->Checked = true;
 			}
-			if ((ptr = strtok(NULL, " ")) == "1")
+			if (!strcmp((ptr = strtok(NULL, " ")) , "1"))
 			{
 				checkBox5->Checked = true;
 			}
-			if ((ptr = strtok(NULL, " ")) == "1")
+			if (!strcmp((ptr = strtok(NULL, " ")) , "1"))
 			{
 				checkBox6->Checked = true;
 			}
-			if ((ptr = strtok(NULL, " ")) == "1")
+			if (!strcmp((ptr = strtok(NULL, " ")) , "1"))
 			{
 				checkBox7->Checked = true;
 			}
-			if ((ptr = strtok(NULL, " ")) == "1")
+			if (!strcmp((ptr = strtok(NULL, " ")) , "1"))
 			{
 				checkBox8->Checked = true;
 			}
-			if ((ptr = strtok(NULL, " ")) == "1")
+			if (!strcmp((ptr = strtok(NULL, " ")) , "1"))
 			{
 				checkBox9->Checked = true;
 			}
