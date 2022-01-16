@@ -815,10 +815,6 @@ private: System::Void accept_Click(System::Object^ sender, System::EventArgs^ e)
 		error_pass2->Visible = false;
 		error_spec->Visible = false;
 		}
-		else
-		{
-			mode == 0;
-		}
 	}
 	else
 	{
