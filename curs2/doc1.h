@@ -640,10 +640,26 @@ private: System::Void accept_Click(System::Object^ sender, System::EventArgs^ e)
 	}	
 	for (int i = 0; i < textBox_password->Text->Length; i++)
 	{
-		if (textBox_password->Text[i] == ' ')
+		error_pass->Visible = true;error_pass->Text = "Ошибка:\nНедопустимый символ\n!!!";
+		for (int j = 0; j < 66; j++)
 		{
-			error_pass->Visible = true; error_pass->Text = "Ошибка:\nНедопустимый символ пробел!!!";
+			if (textBox_password->Text[i] == ru[j])
+			{
+				error_pass->Visible = false; 
+			}
 		}
+		for (int j = 0; j < 62; j++)
+		{
+			if (textBox_password->Text[i] == en[j])
+			{
+				error_pass->Visible = false;// error_pass->Text = "Ошибка:\nНедопустимый символ\n!!!";
+			}
+		}
+		if (error_pass->Visible == true)
+		{
+			i = textBox_password->Text->Length + 1;
+		}
+		
 	}
 
 
