@@ -640,7 +640,7 @@ private: System::Void accept_Click(System::Object^ sender, System::EventArgs^ e)
 	}	
 	for (int i = 0; i < textBox_password->Text->Length; i++)
 	{
-		error_pass->Visible = true;error_pass->Text = "Ошибка:\nНедопустимый символ\n!!!";
+		error_pass->Visible = true;error_pass->Text = "Ошибка:\nНедопустимый символ!!!";
 		for (int j = 0; j < 66; j++)
 		{
 			if (textBox_password->Text[i] == ru[j])
