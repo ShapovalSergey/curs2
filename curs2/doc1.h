@@ -11,14 +11,15 @@
 #include <msclr\marshal.h>
 #include <msclr/marshal_cppstd.h>
 #include <fstream>
-char en[] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'A', 'b', 'B', 'c', 'C', 'd', 'D', 'e', 'E', 'f', 'F', 'g', 'G', 'h', 'H', 'i', 'I', 'j', 'J', 'k', 'K', 'l', 'L', 'm', 'M', 'n', 'N', 'o', 'O', 'p', 'P', 'q', 'Q', 'r', 'R', 's', 'S', 't', 'T', 'u', 'U', 'v', 'V', 'w', 'W', 'x', 'X', 'y', 'Y', 'z', 'Z' };
-char ru[] = { 'а', 'А', 'б', 'Б', 'в', 'В', 'г', 'Г', 'д', 'Д', 'е', 'Е', 'ё', 'Ё', 'ж', 'Ж', 'з', 'З', 'и', 'И', 'й', 'Й', 'к', 'К', 'л', 'Л', 'м', 'М', 'н', 'Н', 'о', 'О', 'п', 'П', 'р', 'Р', 'с', 'С', 'т', 'Т', 'у', 'У', 'ф', 'Ф', 'х', 'Х', 'ц', 'Ц', 'ч', 'Ч', 'ш', 'Ш', 'щ', 'Щ', 'ъ', 'Ъ', 'ы', 'Ы', 'ь', 'Ь', 'э', 'Э', 'ю', 'Ю', 'я','Я' };
+const char en[]= { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'A', 'b', 'B', 'c', 'C', 'd', 'D', 'e', 'E', 'f', 'F', 'g', 'G', 'h', 'H', 'i', 'I', 'j', 'J', 'k', 'K', 'l', 'L', 'm', 'M', 'n', 'N', 'o', 'O', 'p', 'P', 'q', 'Q', 'r', 'R', 's', 'S', 't', 'T', 'u', 'U', 'v', 'V', 'w', 'W', 'x', 'X', 'y', 'Y', 'z', 'Z', '_', '-', ',', '.' };
+const char ru[] = { 'а', 'А', 'б', 'Б', 'в', 'В', 'г', 'Г', 'д', 'Д', 'е', 'Е', 'ё', 'Ё', 'ж', 'Ж', 'з', 'З', 'и', 'И', 'й', 'Й', 'к', 'К', 'л', 'Л', 'м', 'М', 'н', 'Н', 'о', 'О', 'п', 'П', 'р', 'Р', 'с', 'С', 'т', 'Т', 'у', 'У', 'ф', 'Ф', 'х', 'Х', 'ц', 'Ц', 'ч', 'Ч', 'ш', 'Ш', 'щ', 'Щ', 'ъ', 'Ъ', 'ы', 'Ы', 'ь', 'Ь', 'э', 'Э', 'ю', 'Ю', 'я','Я' };
 std::string kod(std::string par) 
 {
+
 	std::string k = ""; std::string parol="";
 	for ( int i = 0;  i < par.length(); i++)
 	{
-		for(int j = 0; j < 62; j++)
+		for(int j = 0; j < 66; j++)
 		{
 			if (par[i]==en[j])
 			{
@@ -29,7 +30,7 @@ std::string kod(std::string par)
 				}
 				else
 				{
-					parol += ru[i + j-66];
+					parol += ru[(i + j)-66];
 				}
 			}
 		}
@@ -38,13 +39,13 @@ std::string kod(std::string par)
 			if (par[i] == ru[z])
 			{
 				k += '1';
-				if (z + i < 62)
+				if (z + i < 66)
 				{
 					parol += en[i + z];
 				}
 				else
 				{
-					parol += en[i + z - 62];
+					parol += en[(i + z) - 66];
 				}
 			}
 		}
@@ -642,9 +643,10 @@ private: System::Void accept_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		error_pass->Visible = true;error_pass->Text = "Ошибка:\nНедопустимый символ!!!";
 		for (int j = 0; j < 66; j++)
-		{
+		{//MessageBox::Show(""+ru[j], "Подтверждение", MessageBoxButtons::OK, MessageBoxIcon::Information);
 			if (textBox_password->Text[i] == ru[j])
 			{
+				
 				error_pass->Visible = false; 
 			}
 		}
@@ -661,6 +663,7 @@ private: System::Void accept_Click(System::Object^ sender, System::EventArgs^ e)
 		}
 		
 	}
+	MessageBox::Show(textBox_password->Text, "Подтверждение", MessageBoxButtons::OK, MessageBoxIcon::Information);
 
 
 
